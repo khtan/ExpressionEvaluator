@@ -15,8 +15,8 @@ namespace FunctionalSuite1
     #endregion class internals
     #region tests
         [Fact]
-        public void s0003_incompleteDecimal(){
-            TestAnExpression("3.", "Parsing failure: Unexpected end of input reached; expected numeric character (Line 1, Column 3); recently consumed: 3.");
+        public void s0003_incompleteDecimalFail(){
+            TestAnExpression("3.", null, "Parsing failure: Unexpected end of input reached; expected numeric character (Line 1, Column 3); recently consumed: 3.");
         }
     #endregion tests
     }

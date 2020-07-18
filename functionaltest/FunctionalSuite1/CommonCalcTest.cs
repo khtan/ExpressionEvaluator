@@ -13,11 +13,23 @@ namespace FunctionalSuite1
     #region testhelpers
         protected void TestAnExpression(string expr, dynamic? expected, string? errorMessage = null)
         {
-            var t = CalcFn(expr);
+            Tuple<dynamic?, string?> t = CalcFn(expr);
             Output.WriteLine($"t={t}");
+/*
             var expectedTuple = new Tuple<dynamic?, string?>(expected, errorMessage);
-            // t.Should().Be(expectedTuple);
-            t.Should().Equals(expectedTuple);
+            t.Should().Be(expectedTuple); // Bug? Be works in FunctionalCalcLibUnitTest but not here, always fail
+            // t.Should().Equals(expectedTuple); // Bug? Equals does not work on Tuple<dynamic?, string?>, always pass, regardless
+*/
+            Double? d = t.Item1;
+            string? m = t.Item2;
+            if (expected != null)
+            {
+                d.Should().Be(expected);
+            }
+            if(errorMessage != null)
+            {
+                m.Should().Be(errorMessage);
+            }
         }
         #endregion testhelpers
         #region tests

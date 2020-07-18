@@ -15,7 +15,7 @@ namespace FunctionalSuite1
     #endregion class internals
     #region tests
         [Fact]
-        public void s0003_incompleteDecimal(){
+        public void s0003_incompleteDecimalPass(){
             TestAnExpression("3.", 3);
         }
     #endregion tests
