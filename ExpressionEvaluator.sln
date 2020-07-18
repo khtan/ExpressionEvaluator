@@ -17,9 +17,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpracheLib", "lib\SpracheLi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpracheLib.test", "lib\SpracheLib.test\SpracheLib.test.csproj", "{A947AD74-2755-4041-8670-54168B1170AF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FunctionalCalcLib", "lib\FunctionalCalcLib\FunctionalCalcLib.csproj", "{28124C42-345C-4DDD-BDB5-883706173790}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FunctionalCalcLib", "lib\FunctionalCalcLib\FunctionalCalcLib.csproj", "{28124C42-345C-4DDD-BDB5-883706173790}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FunctionalCalcLib.test", "lib\FunctionalCalcLib.test\FunctionalCalcLib.test.csproj", "{83F9042B-E5DA-4C43-8535-2755B1A4390A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FunctionalCalcLib.test", "lib\FunctionalCalcLib.test\FunctionalCalcLib.test.csproj", "{83F9042B-E5DA-4C43-8535-2755B1A4390A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FunctionalSuite1", "functionaltest\FunctionalSuite1\FunctionalSuite1.csproj", "{FA64A48D-A8F2-40C2-AB3F-7D4C4D59C173}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{83F9042B-E5DA-4C43-8535-2755B1A4390A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{83F9042B-E5DA-4C43-8535-2755B1A4390A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{83F9042B-E5DA-4C43-8535-2755B1A4390A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA64A48D-A8F2-40C2-AB3F-7D4C4D59C173}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA64A48D-A8F2-40C2-AB3F-7D4C4D59C173}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA64A48D-A8F2-40C2-AB3F-7D4C4D59C173}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA64A48D-A8F2-40C2-AB3F-7D4C4D59C173}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -62,6 +68,7 @@ Global
 		{A947AD74-2755-4041-8670-54168B1170AF} = {706B21B7-70E4-4450-8D30-26BCEBE43A3A}
 		{28124C42-345C-4DDD-BDB5-883706173790} = {706B21B7-70E4-4450-8D30-26BCEBE43A3A}
 		{83F9042B-E5DA-4C43-8535-2755B1A4390A} = {706B21B7-70E4-4450-8D30-26BCEBE43A3A}
+		{FA64A48D-A8F2-40C2-AB3F-7D4C4D59C173} = {CC4D93EF-6A04-457D-B3FB-020C1C572600}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0302539C-6AC5-4718-AF5E-D4EF26842124}
