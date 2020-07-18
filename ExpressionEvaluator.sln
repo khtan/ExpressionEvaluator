@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30309.148
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "lib", "lib", "{706B21B7-70E4-4450-8D30-26BCEBE43A3A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "console", "console", "{A79D8EE8-1D63-4F67-9504-779CDB4229BF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "functionaltest", "functionaltest", "{CC4D93EF-6A04-457D-B3FB-020C1C572600}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KweeLib", "lib\KweeLib\KweeLib.csproj", "{BAB37B09-794D-4EA7-B6AA-D28CA04753BF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BAB37B09-794D-4EA7-B6AA-D28CA04753BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BAB37B09-794D-4EA7-B6AA-D28CA04753BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BAB37B09-794D-4EA7-B6AA-D28CA04753BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BAB37B09-794D-4EA7-B6AA-D28CA04753BF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{BAB37B09-794D-4EA7-B6AA-D28CA04753BF} = {706B21B7-70E4-4450-8D30-26BCEBE43A3A}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0302539C-6AC5-4718-AF5E-D4EF26842124}
+	EndGlobalSection
+EndGlobal
