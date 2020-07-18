@@ -22,7 +22,7 @@ namespace KweeLib.test
             tuple.Item2.Should().BeNull();
         }
         [Fact]
-        public void t0001_squishedExppression()
+        public void t0001_squishedExpression()
         {
             var tuple = Calc.rationalizeExpression("2.5*7.88");
             tuple.Item1.Should().Be("( 2.5 * 7.88 )");
