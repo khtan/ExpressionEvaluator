@@ -1,4 +1,5 @@
-﻿using System;
+﻿#nullable enable
+using System;
 using System.Collections.Generic;
 using System.Runtime;
 using System.Diagnostics;
@@ -19,10 +20,10 @@ namespace KweeLib
         /// Tuple of (validatedString, errorString)
         /// If validateString is null, use errorString to report or diagnose
         /// </returns>
-        public Tuple<string,string> rationalizeExpression(string userInput)
+        public Tuple<string?,string?> rationalizeExpression(string userInput)
         {
-            string rationalExpression = null;
-            string errorMessage = null;
+            string? rationalExpression = null;
+            string? errorMessage = null;
             if (hasValidCharacters(userInput))
             {
                 if (isParenBalanced(userInput))
@@ -82,8 +83,11 @@ namespace KweeLib
             return input;
         }
 
-        public Double? Evaluate(string userInput) // validated == no unbalanced, no bad characters
+        public Tuple<Double?,string?> Evaluate(string userInput) // validated == no unbalanced, no bad characters
         {
+            double? returnValue = null;
+            string? errorMessage = null;
+
             var exprTuple = rationalizeExpression(userInput);
             if(exprTuple.Item1 != null)
             {
@@ -136,12 +140,13 @@ namespace KweeLib
                 }
                 Debug.Assert(opStack.Count == 0);
                 Debug.Assert(valStack.Count == 1);
-                return valStack.Pop();
+                returnValue = valStack.Pop();
             }
             else
             {
-                return null;
+                errorMessage = exprTuple.Item2;
             }
+            return Tuple.Create(returnValue, errorMessage);
         }// Evaluate
     }// class
 }// namespace
