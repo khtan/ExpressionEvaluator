@@ -22,14 +22,21 @@ namespace KweeLib.test
             tuple.Item2.Should().BeNull();
         }
         [Fact]
-        public void t0001_unbalancedParens()
+        public void t0001_squishedExppression()
+        {
+            var tuple = Calc.rationalizeExpression("2.5*7.88");
+            tuple.Item1.Should().Be("( 2.5 * 7.88 )");
+            tuple.Item2.Should().BeNull();
+        }
+        [Fact]
+        public void t0002_unbalancedParens()
         {
             var tuple = Calc.rationalizeExpression(") 3 + 2 (");
             tuple.Item1.Should().BeNull();
             tuple.Item2.Should().Be("There are unbalanced parenthesis in the expression");
         }
         [Fact]
-        public void t0002_invalidCharacter()
+        public void t0003_invalidCharacter()
         {
             var tuple = Calc.rationalizeExpression("3 x 2");
             tuple.Item1.Should().BeNull();
