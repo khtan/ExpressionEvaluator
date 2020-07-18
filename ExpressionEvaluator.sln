@@ -13,9 +13,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KweeLib", "lib\KweeLib\Kwee
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KweeLib.test", "lib\KweeLib.test\KweeLib.test.csproj", "{24EBA14F-8C54-4297-A68D-C8177A20E1AC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpracheLib", "lib\SpracheLib\SpracheLib.csproj", "{0929EED4-1EBF-4698-A20F-60314E33218D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpracheLib", "lib\SpracheLib\SpracheLib.csproj", "{0929EED4-1EBF-4698-A20F-60314E33218D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpracheLib.test", "lib\SpracheLib.test\SpracheLib.test.csproj", "{A947AD74-2755-4041-8670-54168B1170AF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpracheLib.test", "lib\SpracheLib.test\SpracheLib.test.csproj", "{A947AD74-2755-4041-8670-54168B1170AF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FunctionalCalcLib", "lib\FunctionalCalcLib\FunctionalCalcLib.csproj", "{28124C42-345C-4DDD-BDB5-883706173790}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FunctionalCalcLib.test", "lib\FunctionalCalcLib.test\FunctionalCalcLib.test.csproj", "{83F9042B-E5DA-4C43-8535-2755B1A4390A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +43,14 @@ Global
 		{A947AD74-2755-4041-8670-54168B1170AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A947AD74-2755-4041-8670-54168B1170AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A947AD74-2755-4041-8670-54168B1170AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28124C42-345C-4DDD-BDB5-883706173790}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28124C42-345C-4DDD-BDB5-883706173790}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28124C42-345C-4DDD-BDB5-883706173790}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28124C42-345C-4DDD-BDB5-883706173790}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83F9042B-E5DA-4C43-8535-2755B1A4390A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83F9042B-E5DA-4C43-8535-2755B1A4390A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83F9042B-E5DA-4C43-8535-2755B1A4390A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83F9042B-E5DA-4C43-8535-2755B1A4390A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -48,6 +60,8 @@ Global
 		{24EBA14F-8C54-4297-A68D-C8177A20E1AC} = {706B21B7-70E4-4450-8D30-26BCEBE43A3A}
 		{0929EED4-1EBF-4698-A20F-60314E33218D} = {706B21B7-70E4-4450-8D30-26BCEBE43A3A}
 		{A947AD74-2755-4041-8670-54168B1170AF} = {706B21B7-70E4-4450-8D30-26BCEBE43A3A}
+		{28124C42-345C-4DDD-BDB5-883706173790} = {706B21B7-70E4-4450-8D30-26BCEBE43A3A}
+		{83F9042B-E5DA-4C43-8535-2755B1A4390A} = {706B21B7-70E4-4450-8D30-26BCEBE43A3A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0302539C-6AC5-4718-AF5E-D4EF26842124}
