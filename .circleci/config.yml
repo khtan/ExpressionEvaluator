@@ -1,12 +1,41 @@
- version: 2.1
-
- orbs:
+# reusable steps
+test_dotnet: &test_dotnet
+    steps:
+      - checkout
+      - run:
+          name : Install project dependencies
+          working_directory: .
+          command: dotnet restore
+      - run:
+          name : Run CSharp all tests
+          working_directory: .
+          # XunitTests/csharp-results, JUnitTests/csharp-results, JUnitTestProject1/csharp-results
+          command:
+            dotnet test -v n --logger "junit;LogFilePath=csharp-results/csharp-unit-test.xml"
+      - store_test_results:
+           path : .
+# -----------
+# config file
+# -----------
+version: 2.1
+orbs:
   win: circleci/windows@2.2.0
+jobs:
+  test_linux_dotnet:
+    docker:
+      - image: mcr.microsoft.com/dotnet/core/sdk
+    <<: *test_dotnet
+  test_windows_dotnet:
+    executor:
+        name: win/default
+        shell: bash.exe
+    <<: *test_dotnet
 
- jobs:
-   build:
-     executor: win/default     
-    
-     steps:
-       - checkout
-       - run: dotnet build
+workflows: # run jobs sequentially
+  version: 2.1
+  test_all_platforms:
+     jobs:
+       - test_linux_dotnet
+       - test_windows_dotnet:
+           requires:
+             - test_linux_dotnet
