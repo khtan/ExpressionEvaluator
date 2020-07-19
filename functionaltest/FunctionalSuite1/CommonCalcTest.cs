@@ -70,6 +70,9 @@ namespace FunctionalSuite1
         public void t0009_tabExpr(string expr, dynamic expectedResult){
             TestAnExpression(expr, expectedResult);
         }
+        public void t0011_largeValues(string expr, dynamic expectedResult){
+            TestAnExpression(expr, expectedResult);
+        }
     #endregion tests
     }
 }

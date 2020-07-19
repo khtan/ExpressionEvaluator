@@ -63,6 +63,15 @@ namespace FunctionalSuite1
         [InlineData("2\t+\t5", 7)]
         [InlineData("2\t*\t5", 10)]
         public void f0009_tabExpr(string expr, dynamic expectedResult){ t0009_tabExpr(expr, expectedResult); }
+        [Theory]
+        [InlineData("2147483647 + 1", 2147483648)]
+        [InlineData("9999999999 + 1", 10000000000)]
+        // [InlineData("9999999999 * 9999999999", 10000000000)]
+        public void f0011_largeValues(string expr, dynamic expectedResult){
+            // int.MaxValue = 2147483647
+            // double.MaxValue = 1.7976931348623157E+308
+            t0011_largeValues(expr, expectedResult);
+        }
     #endregion forwarded tests
     }
 }
