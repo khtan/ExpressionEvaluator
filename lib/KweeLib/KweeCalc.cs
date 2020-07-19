@@ -115,14 +115,20 @@ namespace KweeLib
             input = Regex.Replace(input, @"\s+", " "); // collapse extraneous spaces
             return input;
         }
-        private void binaryCalcAndPush(Stack<string> opStack, Stack<Double> valStack){
-            var op = opStack.Pop();
-            var secondValue = valStack.Pop(); // tricky: secondValue first
-            var firstValue = valStack.Pop();
-            Double computedValue = 0;
-            if (op == "+") computedValue = firstValue + secondValue;
-            else if (op == "*") computedValue = firstValue * secondValue;
-            valStack.Push(computedValue);
+        private string? binaryCalcAndPush(Stack<string> opStack, Stack<Double> valStack){
+            string? retString = null;
+            try{
+                var op = opStack.Pop();
+                var secondValue = valStack.Pop(); // tricky: secondValue first
+                var firstValue = valStack.Pop();
+                Double computedValue = 0;
+                if (op == "+") computedValue = firstValue + secondValue;
+                else if (op == "*") computedValue = firstValue * secondValue;
+                valStack.Push(computedValue);
+            } catch(Exception e){
+                retString = e.Message;
+            }
+            return retString;
         }
         public Tuple<Double?,string?> Evaluate(string userInput) // validated == no unbalanced, no bad characters
         {
@@ -146,7 +152,11 @@ namespace KweeLib
                             {
                                 if (opStack.Count > 0 && opStack.Peek() == "*") // higher precedence
                                 {
-                                    binaryCalcAndPush(opStack, valStack);
+                                    string? opMsg = binaryCalcAndPush(opStack, valStack);
+                                    if(opMsg != null){
+                                        errorMessage = opMsg;
+                                        break;
+                                    }
                                 }
                                 opStack.Push(token);
                                 break;
@@ -156,7 +166,11 @@ namespace KweeLib
                             {
                                 while (opStack.Count > 0)
                                 {
-                                    binaryCalcAndPush(opStack, valStack);
+                                    string? opMsg = binaryCalcAndPush(opStack, valStack);
+                                    if(opMsg != null){
+                                        errorMessage = opMsg;
+                                        break;
+                                    }
                                 }
                                 break;
                             }
@@ -167,9 +181,11 @@ namespace KweeLib
                             }
                     }
                 }
-                Trace.Assert(opStack.Count == 0);
-                Trace.Assert(valStack.Count == 1);
-                returnValue = valStack.Pop();
+                if(errorMessage == null){
+                    Trace.Assert(opStack.Count == 0);
+                    Trace.Assert(valStack.Count == 1);
+                    returnValue = valStack.Pop();
+                }
             }
             else
             {
