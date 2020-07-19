@@ -72,6 +72,12 @@ namespace FunctionalSuite1
             // double.MaxValue = 1.7976931348623157E+308
             t0011_largeValues(expr, expectedResult);
         }
+        [Theory]
+        [InlineData("2.7 * 1.6", 4.32, null)]
+        [InlineData("0.9999 * 0.9999", 0.99980001, null)]
+        public void s0012_precision(string expr, dynamic expectedResult, string? errorMsg){
+            t0012_precision(expr, expectedResult, errorMsg);
+        }
     #endregion forwarded tests
     }
 }

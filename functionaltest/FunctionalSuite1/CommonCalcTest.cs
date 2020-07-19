@@ -27,7 +27,12 @@ namespace FunctionalSuite1
                 string? m = t.Item2;
                 if (expected != null)
                 {
-                    d.Should().Be(expected);
+                    // Bug in FluentAssertions
+                    // This should work but fails to compile
+                    // d.Should().BeApproximately(expected, 0.00000001);
+                    // Below is workaround
+                    // https://github.com/fluentassertions/fluentassertions/issues/101
+                    NumericAssertionsExtensions.BeApproximately(d.Should(), expected, 0.00000001);
                 }
                 if (errorMessage != null)
                 {
@@ -72,6 +77,9 @@ namespace FunctionalSuite1
         }
         public void t0011_largeValues(string expr, dynamic expectedResult){
             TestAnExpression(expr, expectedResult);
+        }
+        public void t0012_precision(string expr, dynamic expectedResult, string? errorMsg){
+            TestAnExpression(expr, expectedResult, errorMsg);
         }
     #endregion tests
     }

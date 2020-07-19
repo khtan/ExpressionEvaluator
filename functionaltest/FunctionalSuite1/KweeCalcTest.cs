@@ -39,12 +39,6 @@ namespace FunctionalSuite1
         public void s00010_malformedPass(string expr, string expectedMessage){
             TestAnExpression(expr, null, expectedMessage);
         }
-        [Theory]
-        [InlineData("2.7 * 1.6", 4.32, null)]
-        [InlineData("0.9999 * 0.9999", 0.99980001, null)]
-        public void s0012_precision(string expr, dynamic expectedResult, string? errorMsg){
-            TestAnExpression(expr, expectedResult, errorMsg);
-        }
 #if MOREOPERATORS
         [Theory]
         [InlineData("4/2", 2, null)]
@@ -94,6 +88,12 @@ namespace FunctionalSuite1
             // int.MaxValue = 2147483647
             // double.MaxValue = 1.7976931348623157E+308
             t0011_largeValues(expr, expectedResult);
+        }
+        [Theory]
+        [InlineData("2.7 * 1.6", 4.32, null)]
+        [InlineData("0.9999 * 0.9999", 0.99980001, null)]
+        public void s0012_precision(string expr, dynamic expectedResult, string? errorMsg){
+            t0012_precision(expr, expectedResult, errorMsg);
         }
     #endregion forwarded tests
     }
