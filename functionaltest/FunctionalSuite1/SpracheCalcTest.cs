@@ -52,6 +52,10 @@ namespace FunctionalSuite1
         [Fact] public void f0005_precedence() { t0005_precedence(); }
         [Fact] public void f0006_precedence() { t0006_precedence(); }
         [Fact] public void f0007_precedence(){ t0007_precedence();}
+        [Theory]
+        [InlineData("2\t+\t5", 7)]
+        [InlineData("2\t*\t5", 10)]
+        public void f0009_tabExpr(string expr, dynamic expectedResult){ t0009_tabExpr(expr, expectedResult); }
     #endregion forwarded tests
     }
 }

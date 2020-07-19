@@ -27,8 +27,8 @@ namespace FunctionalSuite1
                 m.Should().Be(errorMessage);
             }
         }
-        #endregion testhelpers
-        #region tests
+    #endregion testhelpers
+    #region tests
         public void t0000_Add(string expr, dynamic expectedResult)
         {
             TestAnExpression(expr, expectedResult);
@@ -59,6 +59,9 @@ namespace FunctionalSuite1
         {
             TestAnExpression("2 * 3 + 5 * 7 + 9 * 11", 140);
         }
-        #endregion tests
+        public void t0009_tabExpr(string expr, dynamic expectedResult){
+            TestAnExpression(expr, expectedResult);
+        }
+    #endregion tests
     }
 }

@@ -80,11 +80,11 @@ namespace KweeLib
         private bool hasValidCharacters(string input)
         {
             var hasValid = true;
-            // Valid char set are 0-9. +*()
+            // Valid char set are 0-9. \t+*()
 
             foreach (char c in input)
             {
-                var m = Regex.Match(input, @"[^0-9 +*.)(]+");
+                var m = Regex.Match(input, @"[^0-9 \t+*.)(]+");
                 if (m.Success)
                 {
                     hasValid = false;
