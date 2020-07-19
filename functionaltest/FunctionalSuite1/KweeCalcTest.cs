@@ -7,14 +7,14 @@ namespace FunctionalSuite1
 {
     public class KweeCalcTest : CommonCalcTest
     {
-        #region class internals
+    #region class internals
         public ITestOutputHelper Output;
         public KweeCalcTest(ITestOutputHelper output) { 
             this.Output = output;
             this.CalcFn = Calc.CalcImplKwee;
         }
-        #endregion class internals
-        #region tests
+    #endregion class internals
+    #region special tests
         [Fact]
         public void s0003_incompleteDecimalPass(){
             TestAnExpression("3.", 3);
@@ -23,14 +23,21 @@ namespace FunctionalSuite1
         [InlineData("", "There is no or empty input")]
         [InlineData(" ", "There is no or empty input")]
         [InlineData("\t", "There is no or empty input")]
-        [InlineData("()", "There is no or empty input")]
-        [InlineData("(\t)", "There is no or empty input")]
-        [InlineData("2 + 4 ()", "There is no or empty input")]
         public void s0008_emptyPass(string expr, string expectedMessage){
             TestAnExpression(expr, null, expectedMessage);
         }
-        #endregion special tests
-        #region forwarded tests
+        [Theory]
+        [InlineData("()", "There are malformed constructs in the expression")]
+        [InlineData("(\t)", "There are malformed constructs in the expression")]
+        [InlineData("2 + 4 ()", "There are malformed constructs in the expression")]
+        [InlineData("2 ++ 4", "There are malformed constructs in the expression")]
+        [InlineData("2 *+ 4", "There are malformed constructs in the expression")]
+        [InlineData("2 +*+ 4", "There are malformed constructs in the expression")]
+        public void s00010_malformedPass(string expr, string expectedMessage){
+            TestAnExpression(expr, null, expectedMessage);
+        }
+    #endregion special tests
+    #region forwarded tests
         // Below are forwarding tests to the base class.
         // A tool can be used to generate it
         // Hence single line per test
@@ -56,6 +63,6 @@ namespace FunctionalSuite1
         [InlineData("2\t+\t5", 7)]
         [InlineData("2\t*\t5", 10)]
         public void f0009_tabExpr(string expr, dynamic expectedResult){ t0009_tabExpr(expr, expectedResult); }
-        #endregion forwarded tests
+    #endregion forwarded tests
     }
 }

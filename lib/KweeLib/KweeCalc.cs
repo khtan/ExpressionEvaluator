@@ -26,20 +26,27 @@ namespace KweeLib
             string? errorMessage = null;
             if(!HasEmptyConstructs(userInput))
             {
-                if (hasValidCharacters(userInput))
+                if(!HasMalformedConstructs(userInput))
                 {
-                    if (isParenBalanced(userInput))
+                    if (hasValidCharacters(userInput))
                     {
-                        rationalExpression = "( " + ensureSingleSpace(userInput) + " )";
+                        if (isParenBalanced(userInput))
+                        {
+                            rationalExpression = "( " + ensureSingleSpace(userInput) + " )";
+                        }
+                        else
+                        {
+                            errorMessage = "There are unbalanced parenthesis in the expression";
+                        }
                     }
                     else
                     {
-                        errorMessage = "There are unbalanced parenthesis in the expression";
+                        errorMessage = "There are invalid characters in the expression";
                     }
                 }
                 else
                 {
-                    errorMessage = "There are invalid characters in the expression";
+                    errorMessage = "There are malformed constructs in the expression";
                 }
             }
             else
@@ -48,16 +55,21 @@ namespace KweeLib
             }
             return Tuple.Create(rationalExpression, errorMessage);
         }
+        private bool HasMalformedConstructs(string input){
+            bool returnVal = false;
+            // empty braces
+            var m = Regex.Match(input, @"\(\s*\)");
+            if (m.Success){ returnVal = true; }
+            // 
+            m = Regex.Match(input, @"[+*][+*]");
+            if (m.Success){ returnVal = true; }
+            return returnVal;
+        }
         private bool HasEmptyConstructs(string input) // null, empty, empty braces
         {
             bool returnVal = false;
             if (String.IsNullOrEmpty(input)) { returnVal = true; }
             else if (String.IsNullOrWhiteSpace(input)) { returnVal = true; }
-            else
-            { // empty braces
-                var m = Regex.Match(input, @"\(\s*\)");
-                if (m.Success){ returnVal = true; }
-            }
             return returnVal;
         }
         private bool isParenBalanced(string input)

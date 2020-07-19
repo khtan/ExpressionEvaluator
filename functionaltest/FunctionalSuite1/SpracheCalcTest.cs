@@ -24,10 +24,17 @@ namespace FunctionalSuite1
         [InlineData("",   "Parsing failure: Unexpected end of input reached; expected - or ( or Constant (Line 1, Column 1); recently consumed: ")]
         [InlineData(" ",  "Parsing failure: Unexpected end of input reached; expected - or ( or Constant (Line 1, Column 2); recently consumed:  ")]
         [InlineData("\t", "Parsing failure: Unexpected end of input reached; expected - or ( or Constant (Line 1, Column 2); recently consumed: 	")]
+        public void s0008_emptyFail(string expr, string expectedMessage){
+            TestAnExpression(expr, null, expectedMessage);
+        }
+        [Theory]
         [InlineData("()", "Parsing failure: unexpected ')'; expected - or ( or Constant (Line 1, Column 2); recently consumed: (")]
         [InlineData("(\t)", "Parsing failure: unexpected ')'; expected - or ( or Constant (Line 1, Column 3); recently consumed: (\t")]
         [InlineData("2 + 4 ()", "Parsing failure: unexpected '('; expected end of input (Line 1, Column 7); recently consumed: 2 + 4 ")]
-        public void s0008_emptyFail(string expr, string expectedMessage){
+        [InlineData("2 ++ 4", "Parsing failure: unexpected '+'; expected end of input (Line 1, Column 3); recently consumed: 2 ")]
+        [InlineData("2 *+ 4", "Parsing failure: unexpected '*'; expected end of input (Line 1, Column 3); recently consumed: 2 ")]
+        [InlineData("2 +*+ 4", "Parsing failure: unexpected '+'; expected end of input (Line 1, Column 3); recently consumed: 2 ")]
+        public void s00010_malformedFail(string expr, string expectedMessage){
             TestAnExpression(expr, null, expectedMessage);
         }
     #endregion special tests
