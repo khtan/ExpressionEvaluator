@@ -24,20 +24,41 @@ namespace KweeLib
         {
             string? rationalExpression = null;
             string? errorMessage = null;
-            if (hasValidCharacters(userInput))
+            if(!HasEmptyConstructs(userInput))
             {
-                if (isParenBalanced(userInput))
+                if (hasValidCharacters(userInput))
                 {
-                    rationalExpression = "( " + ensureSingleSpace(userInput) + " )";
-                } else
-                {
-                    errorMessage = "There are unbalanced parenthesis in the expression";
+                    if (isParenBalanced(userInput))
+                    {
+                        rationalExpression = "( " + ensureSingleSpace(userInput) + " )";
+                    }
+                    else
+                    {
+                        errorMessage = "There are unbalanced parenthesis in the expression";
+                    }
                 }
-            } else
+                else
+                {
+                    errorMessage = "There are invalid characters in the expression";
+                }
+            }
+            else
             {
-                errorMessage = "There are invalid characters in the expression";
+                errorMessage = "There is no or empty input";
             }
             return Tuple.Create(rationalExpression, errorMessage);
+        }
+        private bool HasEmptyConstructs(string input) // null, empty, empty braces
+        {
+            bool returnVal = false;
+            if (String.IsNullOrEmpty(input)) { returnVal = true; }
+            else if (String.IsNullOrWhiteSpace(input)) { returnVal = true; }
+            else
+            { // empty braces
+                var m = Regex.Match(input, @"\(\s*\)");
+                if (m.Success){ returnVal = true; }
+            }
+            return returnVal;
         }
         private bool isParenBalanced(string input)
         {

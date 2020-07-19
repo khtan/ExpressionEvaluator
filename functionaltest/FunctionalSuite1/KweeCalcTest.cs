@@ -19,6 +19,15 @@ namespace FunctionalSuite1
         public void s0003_incompleteDecimalPass(){
             TestAnExpression("3.", 3);
         }
+        [Theory]
+        [InlineData("", "There is no or empty input")]
+        [InlineData(" ", "There is no or empty input")]
+        [InlineData("\t", "There is no or empty input")]
+        [InlineData("()", "There is no or empty input")]
+        [InlineData("2 + 4 ()", "There is no or empty input")]
+        public void s0008_emptyPass(string expr, string expectedMessage){
+            TestAnExpression(expr, null, expectedMessage);
+        }
         #endregion special tests
         #region forwarded tests
         // Below are forwarding tests to the base class.

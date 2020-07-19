@@ -11,7 +11,7 @@ test_dotnet: &test_dotnet
           working_directory: .
           # XunitTests/csharp-results, JUnitTests/csharp-results, JUnitTestProject1/csharp-results
           command:
-            dotnet test -v n --logger "junit;LogFilePath=csharp-results/csharp-unit-test.xml"
+            dotnet test -c Release -v n --logger "junit;LogFilePath=csharp-results/csharp-unit-test.xml"
       - store_test_results:
            path : .
 # -----------

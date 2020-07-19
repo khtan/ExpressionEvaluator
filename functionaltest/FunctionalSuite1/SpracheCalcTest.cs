@@ -8,7 +8,7 @@ namespace FunctionalSuite1
 {
     public class SpracheCalcTest : CommonCalcTest
     {
-        #region class internals
+    #region class internals
         public ITestOutputHelper Output;
         public SpracheCalcTest(ITestOutputHelper output) { 
             this.Output = output;
@@ -20,8 +20,17 @@ namespace FunctionalSuite1
         public void s0003_incompleteDecimalFail(){
             TestAnExpression("3.", null, "Parsing failure: Unexpected end of input reached; expected numeric character (Line 1, Column 3); recently consumed: 3.");
         }
-        #endregion special tests
-        #region forwarded tests
+        [Theory]
+        [InlineData("",   "Parsing failure: Unexpected end of input reached; expected - or ( or Constant (Line 1, Column 1); recently consumed: ")]
+        [InlineData(" ",  "Parsing failure: Unexpected end of input reached; expected - or ( or Constant (Line 1, Column 2); recently consumed:  ")]
+        [InlineData("\t", "Parsing failure: Unexpected end of input reached; expected - or ( or Constant (Line 1, Column 2); recently consumed: 	")]
+        [InlineData("()", "Parsing failure: unexpected ')'; expected - or ( or Constant (Line 1, Column 2); recently consumed: (")]
+        [InlineData("2 + 4 ()", "Parsing failure: unexpected '('; expected end of input (Line 1, Column 7); recently consumed: 2 + 4 ")]
+        public void s0008_emptyFail(string expr, string expectedMessage){
+            TestAnExpression(expr, null, expectedMessage);
+        }
+    #endregion special tests
+    #region forwarded tests
         // Below are forwarding tests to the base class.
         // A tool can be used to generate it
         // Hence single line per test
@@ -42,7 +51,6 @@ namespace FunctionalSuite1
         [Fact] public void f0004_precedence() { t0004_precedence(); }
         [Fact] public void f0005_precedence() { t0005_precedence(); }
         [Fact] public void f0006_precedence() { t0006_precedence(); }
-
         [Fact] public void f0007_precedence(){ t0007_precedence();}
     #endregion forwarded tests
     }
