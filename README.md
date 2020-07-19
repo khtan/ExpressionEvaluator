@@ -2,7 +2,7 @@
 # ExpressionEvaluator
 Simple expression evaluator and tests
 ## Introduction
-This is the programming assignment for a SDET Test and Automation position.
+This is the programming assignment for an SDET Test and Automation position.
 ### Problem statement
  Write a program to evaluate arithmetic expressions.  Input will be text expression strings.  Here are some examples:
  5 + 14
