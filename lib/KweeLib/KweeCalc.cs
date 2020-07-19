@@ -82,7 +82,7 @@ namespace KweeLib
             input = Regex.Replace(input, @"\s+", " "); // collapse extraneous spaces
             return input;
         }
-        private void calcAndPush(Stack<string> opStack, Stack<Double> valStack){
+        private void binaryCalcAndPush(Stack<string> opStack, Stack<Double> valStack){
             var op = opStack.Pop();
             var secondValue = valStack.Pop(); // tricky: secondValue first
             var firstValue = valStack.Pop();
@@ -113,7 +113,7 @@ namespace KweeLib
                             {
                                 if (opStack.Count > 0 && opStack.Peek() == "*") // higher precedence
                                 {
-                                    calcAndPush(opStack, valStack);
+                                    binaryCalcAndPush(opStack, valStack);
                                 }
                                 opStack.Push(token);
                                 break;
@@ -123,7 +123,7 @@ namespace KweeLib
                             {
                                 while (opStack.Count > 0)
                                 {
-                                    calcAndPush(opStack, valStack);
+                                    binaryCalcAndPush(opStack, valStack);
                                 }
                                 break;
                             }
