@@ -5,6 +5,12 @@ using Sprache;
 
 namespace SpracheLib
 {
+    /// <summary>
+    /// This is a calculator described and written in the article "Sprache.Calc: Building Yet Another Expression Evaluator"
+    /// <ref>https://www.codeproject.com/Articles/795056/Sprache-Calc-Building-Yet-Another-Expression-Evalu</ref>
+    /// It is based on a modern and lightweight parser called Sprache.
+    /// <ref>https://github.com/sprache/Sprache</ref>
+    /// </summary>
     public class SimpleCalculator
 	{
 		protected internal virtual Parser<string> DecimalWithoutLeadingDigits =>

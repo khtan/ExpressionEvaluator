@@ -8,12 +8,33 @@ using System.Text.RegularExpressions;
 
 namespace KweeLib
 {
+    /// <summary>
+    /// This is a reimplementation of the "Shunting Yard" algorithm, very clearly described in
+    /// Sedgewicks Algorithms 4th edition, Chapter 1 Section 1.3 on 'Arithmetic expression evaluation' :
+    /// ...
+    /// An expression consists of parentheses, operators, and operands (numbers).
+    /// Proceeding from left to right and taking these entities one at a time,
+    /// we manipulate the stacks according to four possible cases, as follows:
+    ///    1. Push operands onto the operand stack.
+    ///    2. Push operators onto the operator stack.
+    ///    3. Ignore left parentheses.
+    ///    4. On encountering a right parenthesis, pop an operator,
+    ///       pop the requisite number of operands,
+    ///       and push onto the operand stack the result of applying that operator to those operands.
+    ///
+    /// After the final right parenthesis has been processed, there is one value on the stack,
+    /// which is the value of the expression.
+    /// ...
+    /// Additional helpers are refactored so that the original code logic is not obscured.
+    ///
+    /// </summary>
     public class KweeCalc
     {
+    #region helpers
         /// <summary>
         /// Checks that userInput is valid, then rationalizes it
         /// to ensure there is an outer () and single spaces between operators
-        /// This makes it easier to Evaluate to process input
+        /// This makes it easier for Evaluate to process input
         /// </summary>
         /// <param name="userInput"></param>
         /// <returns>
@@ -139,7 +160,7 @@ namespace KweeLib
             input = Regex.Replace(input, @"\s+", " "); // collapse extraneous spaces
             return input;
         }
-        private string? binaryCalcAndPush(Stack<string> opStack, Stack<Double> valStack){
+        public string? binaryCalcAndPush(Stack<string> opStack, Stack<Double> valStack){
             string? retString = null;
             try{
                 var op = opStack.Pop();
@@ -160,7 +181,9 @@ namespace KweeLib
             }
             return retString;
         }
-        public Tuple<Double?,string?> Evaluate(string userInput) // validated == no unbalanced, no bad characters
+    #endregion helpers
+    #region Evaluate
+        public Tuple<Double?,string?> Evaluate(string userInput)
         {
             double? returnValue = null;
             string? errorMessage = null;
@@ -234,6 +257,7 @@ namespace KweeLib
             }
             return Tuple.Create(returnValue, errorMessage);
         }// Evaluate
+    #endregion Evaluate
     }// class
 }// namespace
  

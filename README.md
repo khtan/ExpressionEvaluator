@@ -38,7 +38,8 @@ For example, if the language you use has libraryÂ classes/functions for breakin
 
 ### Additional assumptions
 1) Numbers are base10
-2) The input is like a 4-function calculator with 8 digits of display, ie number pad, decimal point and braces. 
+2) The input is like a 4-function calculator with 8 digits of display. 
+   Keys to enter input are 0 to 9 numbers, decimal point, braces and RET.
    There is no entry for scientific notation, although the results may show up in that notation.
    There is no entry for very large symbolic numbers such as int.MaxValue
 3) The operators "+" and "*" are binary operators. The addition of other operations would also be binary, ie

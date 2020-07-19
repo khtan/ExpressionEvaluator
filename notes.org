@@ -35,25 +35,97 @@ For example, if the language you use has libraryÂ classes/functions for breakin
 
 *** Additional assumptions
 1) Numbers are base10
-2) The input is like a 4-function calculator with 8 digits of display, ie number pad, decimal point and braces. 
+2) The input is like a 4-function calculator.
+   Keys to enter input are 0 to 9 numbers, decimal point, braces and RET.
    There is no entry for scientific notation, although the results may show up in that notation.
    There is no entry for very large symbolic numbers such as int.MaxValue
+   Error messages will try to be as helpful as possible.
 3) The operators "+" and "*" are binary operators. The addition of other operations would also be binary, ie
-"-" and "/". These can be conditionally compiled with the pragma #define MOREOPERATORS.
+   "-" and "/". These can be conditionally compiled with the pragma #define MOREOPERATORS.
 4) Unary operators are excluded for now
    Leading signs such as +5 and -5 are considered unary operators.
    Other unary operators are sqrt etc.
    The code can accomodate unary operators and their precedence but it is less trivial.
 
 *** Implementation details
-CiCd : CircleCI
-Test framework : console and XUnit.Net
-Software environment : dotnet 3.1 and Visual Studio 2019 Community
-
+ * Version Control : [Github](https://github.com/khtan/ExpressionEvaluator)
+ * Continuous Integration : [CircleCI](https://circleci.com/gh/khtan/ExpressionEvaluator)
+ * Test framework : console and XUnit.Net
+ * Software environment : dotnet 3.1 and Visual Studio 2019 Community
 *** Ideas seeded but not fully developed
 
 ** Highlights
-** Test organization
+
+** The API
+    /// <summary>
+    /// The fundamental functional interface is Func<string, Tuple<dynamic?, string?>>, ie
+    /// the input is an expression ( string )
+    /// and the output is a Tuple. 
+    /// The first value of the Tuple is a nullable dynamic, representing the value of the expression, if it evaluates without error.
+    /// The null represents a bad evaluation.
+    /// The second value of the Tuple is a nullable string, representing the error message if any.
+    /// The null represents no errors.
+    /// 
+    /// This library provides two implementations of the expression evaluator.
+    /// The KweeCalc is written by yours truly.
+    /// The SimpleCalculator is a test vehicle, pulled from 
+    /// </summary>
+[[file:lib/FunctionalCalcLib/Calc.cs::public static class Calc][Calc.cs]] has 2 implementations, CalcImplKwee and CalcImplSprache.
+CalcImplKwee is the ?
+CalcImplSprache is the ?
+
+** Preliminary research
+Initial research suggests that for industrial strength parsing, it is advisable to use something like Antlr.
+Since this project is for learning, I found a lightweight C# parser that I thought I could leverage upon.
+It is called Sprache ( https://github.com/sprache/Sprache ). A separate article "Sprache.Calc: Building Yet Another Expression Evaluator"
+even gave the implementation for a simple calculator. 
+( https://www.codeproject.com/Articles/795056/Sprache-Calc-Building-Yet-Another-Expression-Evalu ). Instead of just
+coping the pattern, I decided to adopt this as a buddy test element. It would then be used to compare its output
+to that of the expression evaluator I will write.
+
+I tried to devise an algorithm for evaluating an arbitary infix expression and ran into many problems.
+After clarifying the reasons for being able to reimplement the SY algorithm, I decided that it would be
+safe to re-implement it from Sedgewick's 4 line description ( Sedgewicks Algorithms 4th edition, Chapter 1
+Section 1.3 on 'Arithmetic expression evaluation') 
+   1. Push operands onto the operand stack.
+   2. Push operators onto the operator stack.
+   3. Ignore left parentheses.
+   4. On encountering a right parenthesis, pop an operator, pop the requisite number of operands, and push onto the operand stack the result of applying that operator to those operands.
+There is also a complete java code implementation for reference.
+
+/// 
+/// This is a reimplementation of the "Shunting Yard" algorithm, very clearly described in 
+/// Sedgewicks Algorithms 4th edition, Chapter 1 Section 1.3 on 'Arithmetic expression evaluation' :
+/// ...
+/// An expression consists of parentheses, operators, and operands (numbers). 
+/// Proceeding from left to right and taking these entities one at a time, 
+/// we manipulate the stacks according to four possible cases, as follows:
+///    1. Push operands onto the operand stack.
+///    2. Push operators onto the operator stack.
+///    3. Ignore left parentheses.
+///    4. On encountering a right parenthesis, pop an operator, pop the requisite number of operands, and push onto the operand stack the result of applying that operator to those operands.
+/// After the final right parenthesis has been processed, there is one value on the stack, 
+/// which is the value of the expression.
+/// ...
+/// Additional helpers are refactored so that the original code logic is not obscured.
+/// 
+
+** Deliverable
+https://www.codeproject.com/Articles/795056/Sprache-Calc-Building-Yet-Another-Expression-Evalu
+** Code/Test organization
+The code is organized into 3 folders :
+1. lib
+This contains the source code for the libraries.
+
+Each library <libraryName> has its accompanying <libraryName>.test that is its companion unit tests.
+
+2. console
+This provides console drivers that wraps the functionality in the libraries for convenient and direct use.
+It is useful for quick testing.
+
+3. functionaltest
+This is the functional test for 
+
 ** Test implementation
 ** Consoles
 ** 3rdParty - Sprache
@@ -61,3 +133,7 @@ Software environment : dotnet 3.1 and Visual Studio 2019 Community
 ** Shortcomings and improvements
 ** References
 [[https://docs.microsoft.com/en-us/dotnet/core/install/windows?tabs=netcore31][Install .Net Core on Windows]]
+** Misc
+1. Not very consistent with naming convention and brace placements.
+2. If the idea is simple but it takes a few lines to code, sometimes I try to keep the
+   code in one line. This is very perl-lish in that ???

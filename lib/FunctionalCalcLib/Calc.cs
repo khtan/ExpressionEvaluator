@@ -7,6 +7,19 @@ using System.Threading.Tasks;
 
 namespace FunctionalCalcLib
 {
+    /// <summary>
+    /// The fundamental functional interface is Func<string, Tuple<dynamic?, string?>>, ie
+    /// the input is an expression ( string )
+    /// and the output is a Tuple. 
+    /// The first value of the Tuple is a nullable dynamic, representing the value of the expression, if it evaluates without error.
+    /// The null represents a bad evaluation.
+    /// The second value of the Tuple is a nullable string, representing the error message if any.
+    /// The null represents no errors.
+    /// 
+    /// This library provides two implementations of the expression evaluator.
+    /// The KweeCalc is written by yours truly.
+    /// The SimpleCalculator is a test vehicle, pulled from 
+    /// </summary>
     public static class Calc
     {
         private static readonly SimpleCalculator Simple = new SimpleCalculator();
