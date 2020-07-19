@@ -5,6 +5,8 @@ using System.Runtime;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
 using System.Linq;
+// Remove comment to add '/' and '-' operators
+// #define MOREOPERATORS
 
 namespace KweeLib
 {
@@ -73,7 +75,7 @@ namespace KweeLib
             var m = Regex.Match(input, @"\(\s*\)");
             if (m.Success){ returnVal = true; }
             // 
-#if FALSE
+#if MOREOPERATORS
             m = Regex.Match(input, @"[+*/-][+*/-]");
 #else
             m = Regex.Match(input, @"[+*][+*]");
@@ -112,7 +114,7 @@ namespace KweeLib
 
             foreach (char c in input)
             {
-#if FALSE
+#if MOREOPERATORS
                 var m = Regex.Match(input, @"[^0-9 \t/-+*.)(]+"); // have - and / symbols
 #else
                 var m = Regex.Match(input, @"[^0-9 \t+*.)(]+"); // does not have - and / symbols
@@ -131,7 +133,7 @@ namespace KweeLib
                 .Replace("*", " * ")
                 .Replace("(", " ( ")
                 .Replace(")", " ) "); // expand the key characters
-#if FALSE
+#if MOREOPERATORS
             input = input.Replace("-", " - ").
             Replace("/", " / ");
 #endif
@@ -148,7 +150,7 @@ namespace KweeLib
                 Double computedValue = 0;
                 if (op == "+") computedValue = firstValue + secondValue;
                 else if (op == "*") computedValue = firstValue * secondValue;
-#if FALSE
+#if MOREOPERATORS
                 else if (op == "-") computedValue = firstValue - secondValue;
                 else if (op == "/") computedValue = firstValue / secondValue;
 #endif
@@ -191,7 +193,7 @@ namespace KweeLib
                                 break;
                             }
                         case "*": { opStack.Push(token); break; }
-#if FALSE
+#if MOREOPERATORS
                         case "/": { opStack.Push(token); break; }
 #endif
                         case ")":
@@ -227,3 +229,4 @@ namespace KweeLib
         }// Evaluate
     }// class
 }// namespace
+ 
