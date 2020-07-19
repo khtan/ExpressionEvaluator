@@ -28,7 +28,7 @@ namespace KweeLib
             {
                 if (isParenBalanced(userInput))
                 {
-                    rationalExpression = "( " + EnsureSingleSpace(userInput) + " )";
+                    rationalExpression = "( " + ensureSingleSpace(userInput) + " )";
                 } else
                 {
                     errorMessage = "There are unbalanced parenthesis in the expression";
@@ -72,7 +72,7 @@ namespace KweeLib
             }
             return hasValid;
         }
-        private string EnsureSingleSpace(string input)
+        private string ensureSingleSpace(string input)
         {
             input = input.Replace("+", " + ")
                 .Replace("*", " * ")
@@ -82,7 +82,15 @@ namespace KweeLib
             input = Regex.Replace(input, @"\s+", " "); // collapse extraneous spaces
             return input;
         }
-
+        private void calcAndPush(Stack<string> opStack, Stack<Double> valStack){
+            var op = opStack.Pop();
+            var secondValue = valStack.Pop(); // tricky: secondValue first
+            var firstValue = valStack.Pop();
+            Double computedValue = 0;
+            if (op == "+") computedValue = firstValue + secondValue;
+            else if (op == "*") computedValue = firstValue * secondValue;
+            valStack.Push(computedValue);
+        }
         public Tuple<Double?,string?> Evaluate(string userInput) // validated == no unbalanced, no bad characters
         {
             double? returnValue = null;
@@ -105,13 +113,7 @@ namespace KweeLib
                             {
                                 if (opStack.Count > 0 && opStack.Peek() == "*") // higher precedence
                                 {
-                                    var op = opStack.Pop();
-                                    var secondValue = valStack.Pop();
-                                    var firstValue = valStack.Pop();
-                                    Double computedValue = 0;
-                                    if (op == "+") computedValue = firstValue + secondValue;
-                                    else if (op == "*") computedValue = firstValue * secondValue;
-                                    valStack.Push(computedValue);
+                                    calcAndPush(opStack, valStack);
                                 }
                                 opStack.Push(token);
                                 break;
@@ -121,13 +123,7 @@ namespace KweeLib
                             {
                                 while (opStack.Count > 0)
                                 {
-                                    var op = opStack.Pop();
-                                    var secondValue = valStack.Pop(); // tricky: reverse order
-                                    var firstValue = valStack.Pop();
-                                    Double computedValue = 0;
-                                    if (op == "+") computedValue = firstValue + secondValue;
-                                    else if (op == "*") computedValue = firstValue * secondValue;
-                                    valStack.Push(computedValue);
+                                    calcAndPush(opStack, valStack);
                                 }
                                 break;
                             }
@@ -138,8 +134,8 @@ namespace KweeLib
                             }
                     }
                 }
-                Debug.Assert(opStack.Count == 0);
-                Debug.Assert(valStack.Count == 1);
+                Trace.Assert(opStack.Count == 0);
+                Trace.Assert(valStack.Count == 1);
                 returnValue = valStack.Pop();
             }
             else
