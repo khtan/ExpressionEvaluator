@@ -55,13 +55,29 @@ namespace KweeLib
             }
             return Tuple.Create(rationalExpression, errorMessage);
         }
+        private bool doesTargetHaveHigherPrecedence(string targetOp, string currentOp)
+        {
+            bool returnVal = false;
+            if (currentOp == "+" || currentOp == "-")
+            {
+                if(targetOp == "*" || targetOp == "/")
+                {
+                    returnVal = true;
+                }
+            }
+            return returnVal;
+        }
         private bool HasMalformedConstructs(string input){
             bool returnVal = false;
             // empty braces
             var m = Regex.Match(input, @"\(\s*\)");
             if (m.Success){ returnVal = true; }
             // 
+#if FALSE
+            m = Regex.Match(input, @"[+*/-][+*/-]");
+#else
             m = Regex.Match(input, @"[+*][+*]");
+#endif
             if (m.Success){ returnVal = true; }
             return returnVal;
         }
@@ -96,7 +112,11 @@ namespace KweeLib
 
             foreach (char c in input)
             {
-                var m = Regex.Match(input, @"[^0-9 \t+*.)(]+");
+#if FALSE
+                var m = Regex.Match(input, @"[^0-9 \t/-+*.)(]+"); // have - and / symbols
+#else
+                var m = Regex.Match(input, @"[^0-9 \t+*.)(]+"); // does not have - and / symbols
+#endif
                 if (m.Success)
                 {
                     hasValid = false;
@@ -107,10 +127,14 @@ namespace KweeLib
         }
         private string ensureSingleSpace(string input)
         {
-            input = input.Replace("+", " + ")
+            input = input.Replace("+", " + ") // operators
                 .Replace("*", " * ")
                 .Replace("(", " ( ")
                 .Replace(")", " ) "); // expand the key characters
+#if FALSE
+            input = input.Replace("-", " - ").
+            Replace("/", " / ");
+#endif
             input = input.Trim(); // clean the beginning and end
             input = Regex.Replace(input, @"\s+", " "); // collapse extraneous spaces
             return input;
@@ -124,6 +148,10 @@ namespace KweeLib
                 Double computedValue = 0;
                 if (op == "+") computedValue = firstValue + secondValue;
                 else if (op == "*") computedValue = firstValue * secondValue;
+#if FALSE
+                else if (op == "-") computedValue = firstValue - secondValue;
+                else if (op == "/") computedValue = firstValue / secondValue;
+#endif
                 valStack.Push(computedValue);
             } catch(Exception e){
                 retString = e.Message;
@@ -150,8 +178,9 @@ namespace KweeLib
                         case "(": { break; }
                         case "+":
                             {
-                                if (opStack.Count > 0 && opStack.Peek() == "*") // higher precedence
-                                {
+                                // if (opStack.Count > 0 && opStack.Peek() == "*") // higher precedence
+                                if (opStack.Count > 0 && doesTargetHaveHigherPrecedence(opStack.Peek(), token)) // higher precedence
+                                    {
                                     string? opMsg = binaryCalcAndPush(opStack, valStack);
                                     if(opMsg != null){
                                         errorMessage = opMsg;
@@ -162,6 +191,9 @@ namespace KweeLib
                                 break;
                             }
                         case "*": { opStack.Push(token); break; }
+#if FALSE
+                        case "/": { opStack.Push(token); break; }
+#endif
                         case ")":
                             {
                                 while (opStack.Count > 0)

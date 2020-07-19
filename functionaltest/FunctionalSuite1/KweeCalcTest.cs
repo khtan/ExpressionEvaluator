@@ -36,6 +36,11 @@ namespace FunctionalSuite1
         public void s00010_malformedPass(string expr, string expectedMessage){
             TestAnExpression(expr, null, expectedMessage);
         }
+        [Fact]
+        public void s0012_xxx(){
+            // TestAnExpression("4/2", 2); // pass
+            // TestAnExpression("4/0", double.PositiveInfinity); // pass
+        }
     #endregion special tests
     #region forwarded tests
         // Below are forwarding tests to the base class.
