@@ -1,12 +1,10 @@
 ﻿#nullable enable
-using System;
-using System.Collections.Generic;
-using System.Runtime;
-using System.Diagnostics;
-using System.Text.RegularExpressions;
-using System.Linq;
 // Remove comment to add '/' and '-' operators
 // #define MOREOPERATORS
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Text.RegularExpressions;
 
 namespace KweeLib
 {
@@ -148,11 +146,11 @@ namespace KweeLib
                 var secondValue = valStack.Pop(); // tricky: secondValue first
                 var firstValue = valStack.Pop();
                 Double computedValue = 0;
-                if (op == "+") computedValue = firstValue + secondValue;
-                else if (op == "*") computedValue = firstValue * secondValue;
+                if (op == "+") { computedValue = firstValue + secondValue; }
+                else if (op == "*") { computedValue = firstValue * secondValue; }
 #if MOREOPERATORS
-                else if (op == "-") computedValue = firstValue - secondValue;
-                else if (op == "/") computedValue = firstValue / secondValue;
+                else if (op == "-") { computedValue = firstValue - secondValue; }
+                else if (op == "/") { computedValue = firstValue / secondValue; }
 #endif
                 valStack.Push(computedValue);
             } catch(Exception e){
