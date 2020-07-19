@@ -13,8 +13,10 @@ namespace FunctionalSuite1
     #region testhelpers
         protected void TestAnExpression(string expr, dynamic? expected, string? errorMessage = null)
         {
-            if(! (CalcFn is null))
+            if(CalcFn is null)
             {
+                CalcFn.Should().NotBeNull();
+            } else {
                 Tuple<dynamic?, string?> t = CalcFn(expr);
                 /*
                             var expectedTuple = new Tuple<dynamic?, string?>(expected, errorMessage);
@@ -31,8 +33,6 @@ namespace FunctionalSuite1
                 {
                     m.Should().Be(errorMessage);
                 }
-            } else { // Use this to catch this exception that should not happen
-                CalcFn.Should().NotBeNull();
             }
         }
     #endregion testhelpers
