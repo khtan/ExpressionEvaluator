@@ -1,30 +1,38 @@
 #nullable enable
 using System;
+using System.Diagnostics.CodeAnalysis;
 using FluentAssertions;
 
 namespace FunctionalSuite1
 {
     public class CommonCalcTest
     {
-        public Func<string, Tuple<dynamic?, string?>> CalcFn;
+           // [MaybeNull] attribute not disabling CS8618 warning
+           // Warning CS8618  Non-nullable field 'CalcFn' is uninitialized.Consider declaring the field as nullable.FunctionalSuite1 C:\cprojects\github\circleci\ExpressionEvaluator\functionaltest\FunctionalSuite1\CommonCalcTest.cs	12	Active
+           [MaybeNull] public Func<string, Tuple<dynamic?, string?>> CalcFn; 
     #region testhelpers
         protected void TestAnExpression(string expr, dynamic? expected, string? errorMessage = null)
         {
-            Tuple<dynamic?, string?> t = CalcFn(expr);
-/*
-            var expectedTuple = new Tuple<dynamic?, string?>(expected, errorMessage);
-            t.Should().Be(expectedTuple); // Bug? Be works in FunctionalCalcLibUnitTest but not here, always fail
-            // t.Should().Equals(expectedTuple); // Bug? Equals does not work on Tuple<dynamic?, string?>, always pass, regardless
-*/
-            Double? d = t.Item1;
-            string? m = t.Item2;
-            if (expected != null)
+            if(! (CalcFn is null))
             {
-                d.Should().Be(expected);
-            }
-            if(errorMessage != null)
-            {
-                m.Should().Be(errorMessage);
+                Tuple<dynamic?, string?> t = CalcFn(expr);
+                /*
+                            var expectedTuple = new Tuple<dynamic?, string?>(expected, errorMessage);
+                            t.Should().Be(expectedTuple); // Bug? Be works in FunctionalCalcLibUnitTest but not here, always fail
+                            // t.Should().Equals(expectedTuple); // Bug? Equals does not work on Tuple<dynamic?, string?>, always pass, regardless
+                */
+                Double? d = t.Item1;
+                string? m = t.Item2;
+                if (expected != null)
+                {
+                    d.Should().Be(expected);
+                }
+                if (errorMessage != null)
+                {
+                    m.Should().Be(errorMessage);
+                }
+            } else { // Use this to catch this exception that should not happen
+                CalcFn.Should().NotBeNull();
             }
         }
     #endregion testhelpers
