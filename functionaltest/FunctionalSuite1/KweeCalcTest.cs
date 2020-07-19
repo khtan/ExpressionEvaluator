@@ -39,6 +39,12 @@ namespace FunctionalSuite1
         public void s00010_malformedPass(string expr, string expectedMessage){
             TestAnExpression(expr, null, expectedMessage);
         }
+        [Theory]
+        [InlineData("2.7 * 1.6", 4.32, null)]
+        [InlineData("0.9999 * 0.9999", 0.99980001, null)]
+        public void s0012_precision(string expr, dynamic expectedResult, string? errorMsg){
+            TestAnExpression(expr, expectedResult, errorMsg);
+        }
 #if MOREOPERATORS
         [Theory]
         [InlineData("4/2", 2, null)]
