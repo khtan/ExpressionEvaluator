@@ -1,4 +1,7 @@
 #nullable enable
+// Remove comment to add '/' and '-' operators
+// #define MOREOPERATORS
+
 using Xunit;
 using Xunit.Abstractions;
 using FunctionalCalcLib;
@@ -9,7 +12,7 @@ namespace FunctionalSuite1
     {
     #region class internals
         public ITestOutputHelper Output;
-        public KweeCalcTest(ITestOutputHelper output) { 
+        public KweeCalcTest(ITestOutputHelper output) {
             this.Output = output;
             this.CalcFn = Calc.CalcImplKwee;
         }
@@ -36,11 +39,20 @@ namespace FunctionalSuite1
         public void s00010_malformedPass(string expr, string expectedMessage){
             TestAnExpression(expr, null, expectedMessage);
         }
-        [Fact]
-        public void s0012_xxx(){
-            // TestAnExpression("4/2", 2); // pass
-            // TestAnExpression("4/0", double.PositiveInfinity); // pass
+#if MOREOPERATORS
+        [Theory]
+        [InlineData("4/2", 2, null)]
+        [InlineData("4/0", double.PositiveInfinity, null)]
+        public void s0099_divide(string expr, dynamic expectedResult, string? errorMsg){
+            TestAnExpression(expr, expectedResult, errorMsg);
         }
+        [Theory]
+        [InlineData("4 - 2", 2, null)]
+        [InlineData("2 - 4", -2, null)]
+        public void s0099_subtract(string expr, dynamic expectedResult, string? errorMsg){
+            TestAnExpression(expr, expectedResult, errorMsg);
+        }
+#endif
     #endregion special tests
     #region forwarded tests
         // Below are forwarding tests to the base class.

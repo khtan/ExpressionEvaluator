@@ -113,7 +113,7 @@ namespace KweeLib
             foreach (char c in input)
             {
 #if MOREOPERATORS
-                var m = Regex.Match(input, @"[^0-9 \t/-+*.)(]+"); // have - and / symbols
+                var m = Regex.Match(input, @"[^0-9 \t/\-+*.)(]+"); // have - and / symbols
 #else
                 var m = Regex.Match(input, @"[^0-9 \t+*.)(]+"); // does not have - and / symbols
 #endif
@@ -147,7 +147,9 @@ namespace KweeLib
                 var firstValue = valStack.Pop();
                 Double computedValue = 0;
                 if (op == "+") { computedValue = firstValue + secondValue; }
-                else if (op == "*") { computedValue = firstValue * secondValue; }
+                else if (op == "*") { 
+                    computedValue = firstValue * secondValue; 
+                }
 #if MOREOPERATORS
                 else if (op == "-") { computedValue = firstValue - secondValue; }
                 else if (op == "/") { computedValue = firstValue / secondValue; }
@@ -176,9 +178,13 @@ namespace KweeLib
                     switch (token)
                     {
                         case "(": { break; }
+#if MOREOPERATORS
+                        case "-":
                         case "+":
+#else
+                        case "+":
+#endif
                             {
-                                // if (opStack.Count > 0 && opStack.Peek() == "*") // higher precedence
                                 if (opStack.Count > 0 && doesTargetHaveHigherPrecedence(opStack.Peek(), token)) // higher precedence
                                     {
                                     string? opMsg = binaryCalcAndPush(opStack, valStack);
@@ -190,9 +196,12 @@ namespace KweeLib
                                 opStack.Push(token);
                                 break;
                             }
-                        case "*": { opStack.Push(token); break; }
+
 #if MOREOPERATORS
-                        case "/": { opStack.Push(token); break; }
+                        case "/":
+                        case "*": { opStack.Push(token); break; }
+#else
+                        case "*": { opStack.Push(token); break; }
 #endif
                         case ")":
                             {
