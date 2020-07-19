@@ -1,3 +1,4 @@
+[![CircleCI Status](https://circleci.com/gh/khtan/ExpressionEvaluator.svg?style=shield)](https://circleci.com/gh/khtan/ExpressionEvaluator)
 # ExpressionEvaluator
 Simple expression evaluator and tests
 Constraints:
