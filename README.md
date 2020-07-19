@@ -11,12 +11,12 @@ This is the programming assignment for a SDET Test and Automation position.
  (6 + 5) * (8 + 2)
 
  Your solution should:
- · Demonstrate the ability to parse/evaluate arithmetic expressions
- · Support addition and multiplication and be easily extensible to add other operations later
- · Be designed and implemented in an object-oriented manner
- · Not use the "Shunting Yard" algorithm
- · Contain a testing framework to validate that the solution is functioning as desired
- · Use whatever tools and languages you are most comfortable with
+ * Demonstrate the ability to parse/evaluate arithmetic expressions
+ * Support addition and multiplication and be easily extensible to add other operations later
+ * Be designed and implemented in an object-oriented manner
+ * Not use the "Shunting Yard" algorithm
+ * Contain a testing framework to validate that the solution is functioning as desired
+ * Use whatever tools and languages you are most comfortable with
 
 ### Clarifications
 The main clarification was on why/whether the Shunting Yard (SY) algorithm should not be used.
@@ -43,12 +43,13 @@ For example, if the language you use has libraryÂ classes/functions for breakin
    There is no entry for very large symbolic numbers such as int.MaxValue
 3) The operators "+" and "*" are binary operators. The addition of other operations would also be binary, ie
    "-" and "/". These can be conditionally compiled with the pragma #define MOREOPERATORS.
-4) Unary operators are excluded for now
+4) Unary operators are excluded for now.
    Leading signs such as +5 and -5 are considered unary operators.
    Other unary operators are sqrt etc.
    The code can accomodate unary operators and their precedence but it is less trivial.
 
 ### Implementation details
-CiCd : CircleCI
-Test framework : console and XUnit.Net
-Software environment : dotnet 3.1 and Visual Studio 2019 Community
+* CiCd : CircleCI
+* Test framework : console and XUnit.Net
+* Software environment : dotnet 3.1 and Visual Studio 2019 Community
+

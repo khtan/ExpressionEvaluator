@@ -59,3 +59,5 @@ Software environment : dotnet 3.1 and Visual Studio 2019 Community
 ** 3rdParty - Sprache
 ** How to build and run
 ** Shortcomings and improvements
+** References
+[[https://docs.microsoft.com/en-us/dotnet/core/install/windows?tabs=netcore31][Install .Net Core on Windows]]
