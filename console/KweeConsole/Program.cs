@@ -19,7 +19,7 @@ namespace KweeConsole
             string codeToEval;
             while ((codeToEval = Console.ReadLine()) != null)
             {
-                Console.WriteLine($"i: {codeToEval}");
+                // Console.WriteLine($"i: {codeToEval}");
                 // use the functional interface for Kwee calculator
                 var t = Calc.CalcImplKwee(codeToEval);
                 if(t.Item1 != null) { // value

@@ -17,7 +17,6 @@ This is the programming assignment for an SDET Test and Automation position.
  * Not use the "Shunting Yard" algorithm
  * Contain a testing framework to validate that the solution is functioning as desired
  * Use whatever tools and languages you are most comfortable with
-
 ### Clarifications
 The main clarification was on why/whether the Shunting Yard (SY) algorithm should not be used.
 

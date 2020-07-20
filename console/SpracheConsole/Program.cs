@@ -18,7 +18,7 @@ namespace SpracheConsole
         {
             string codeToEval;
             while ((codeToEval = Console.ReadLine()) != null){
-                Console.WriteLine($"i: {codeToEval}");
+                // Console.WriteLine($"i: {codeToEval}");
                 // use the functional interface for Sprache calculator
                 var t = Calc.CalcImplSprache(codeToEval);
                 if(t.Item1 != null) { // value
