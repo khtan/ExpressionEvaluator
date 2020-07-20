@@ -1,0 +1,287 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v3.1",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v3.1": {
+      "KweeConsole/1.0.0": {
+        "dependencies": {
+          "FunctionalCalcLib": "1.0.0"
+        },
+        "runtime": {
+          "KweeConsole.dll": {}
+        }
+      },
+      "Microsoft.NETCore.Platforms/1.1.0": {},
+      "Microsoft.NETCore.Targets/1.1.0": {},
+      "Sprache/2.3.1-develop-00033": {
+        "dependencies": {
+          "System.Globalization": "4.3.0",
+          "System.Linq": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "System.Text.RegularExpressions": "4.3.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Sprache.dll": {
+            "assemblyVersion": "2.3.1.0",
+            "fileVersion": "2.3.1.0"
+          }
+        }
+      },
+      "System.Collections/4.3.0": {
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "1.1.0",
+          "Microsoft.NETCore.Targets": "1.1.0",
+          "System.Runtime": "4.3.0"
+        }
+      },
+      "System.Diagnostics.Debug/4.3.0": {
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "1.1.0",
+          "Microsoft.NETCore.Targets": "1.1.0",
+          "System.Runtime": "4.3.0"
+        }
+      },
+      "System.Globalization/4.3.0": {
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "1.1.0",
+          "Microsoft.NETCore.Targets": "1.1.0",
+          "System.Runtime": "4.3.0"
+        }
+      },
+      "System.IO/4.3.0": {
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "1.1.0",
+          "Microsoft.NETCore.Targets": "1.1.0",
+          "System.Runtime": "4.3.0",
+          "System.Text.Encoding": "4.3.0",
+          "System.Threading.Tasks": "4.3.0"
+        }
+      },
+      "System.Linq/4.3.0": {
+        "dependencies": {
+          "System.Collections": "4.3.0",
+          "System.Diagnostics.Debug": "4.3.0",
+          "System.Resources.ResourceManager": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "System.Runtime.Extensions": "4.3.0"
+        }
+      },
+      "System.Reflection/4.3.0": {
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "1.1.0",
+          "Microsoft.NETCore.Targets": "1.1.0",
+          "System.IO": "4.3.0",
+          "System.Reflection.Primitives": "4.3.0",
+          "System.Runtime": "4.3.0"
+        }
+      },
+      "System.Reflection.Primitives/4.3.0": {
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "1.1.0",
+          "Microsoft.NETCore.Targets": "1.1.0",
+          "System.Runtime": "4.3.0"
+        }
+      },
+      "System.Resources.ResourceManager/4.3.0": {
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "1.1.0",
+          "Microsoft.NETCore.Targets": "1.1.0",
+          "System.Globalization": "4.3.0",
+          "System.Reflection": "4.3.0",
+          "System.Runtime": "4.3.0"
+        }
+      },
+      "System.Runtime/4.3.0": {
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "1.1.0",
+          "Microsoft.NETCore.Targets": "1.1.0"
+        }
+      },
+      "System.Runtime.Extensions/4.3.0": {
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "1.1.0",
+          "Microsoft.NETCore.Targets": "1.1.0",
+          "System.Runtime": "4.3.0"
+        }
+      },
+      "System.Text.Encoding/4.3.0": {
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "1.1.0",
+          "Microsoft.NETCore.Targets": "1.1.0",
+          "System.Runtime": "4.3.0"
+        }
+      },
+      "System.Text.RegularExpressions/4.3.0": {
+        "dependencies": {
+          "System.Runtime": "4.3.0"
+        }
+      },
+      "System.Threading.Tasks/4.3.0": {
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "1.1.0",
+          "Microsoft.NETCore.Targets": "1.1.0",
+          "System.Runtime": "4.3.0"
+        }
+      },
+      "FunctionalCalcLib/1.0.0": {
+        "dependencies": {
+          "KweeLib": "1.0.0",
+          "SpracheLib": "1.0.0"
+        },
+        "runtime": {
+          "FunctionalCalcLib.dll": {}
+        }
+      },
+      "KweeLib/1.0.0": {
+        "runtime": {
+          "KweeLib.dll": {}
+        }
+      },
+      "SpracheLib/1.0.0": {
+        "dependencies": {
+          "Sprache": "2.3.1-develop-00033"
+        },
+        "runtime": {
+          "SpracheLib.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "KweeConsole/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Microsoft.NETCore.Platforms/1.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-c0bJ9/4HorkWXghw8abCVoTCQn+ws8ZZBepJoLHxyVEwAubNtxM69LX3UyskpT72ey+4uFCNlBZ6uDFj5WFwkQ==",
+      "path": "microsoft.netcore.platforms/1.1.0",
+      "hashPath": "microsoft.netcore.platforms.1.1.0.nupkg.sha512"
+    },
+    "Microsoft.NETCore.Targets/1.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-GOmAiwpP8gCoFonbF8rhFz4PhsbBpioHjY/vFXyzIyl+i1VLVtg6fm6i7Nnt4qOl558bVp4Nqamw5Mhw5J6gDA==",
+      "path": "microsoft.netcore.targets/1.1.0",
+      "hashPath": "microsoft.netcore.targets.1.1.0.nupkg.sha512"
+    },
+    "Sprache/2.3.1-develop-00033": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-qfRiNzQua4vT5h7ult8+yvjwOxkpJc4X1+Z4RUux3PKVCdPje/Dam63lh+CZ8QJk5I0E5Rr4XueG6I4dvfh6dg==",
+      "path": "sprache/2.3.1-develop-00033",
+      "hashPath": "sprache.2.3.1-develop-00033.nupkg.sha512"
+    },
+    "System.Collections/4.3.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-YylU58Fnv0f0bX0XOb8bc/5xcc9j42by91yIqjkTUV16xS8dP3IscWoLMGt7NHFhSp9CW3sq4k544Qt/eUw3Yg==",
+      "path": "system.collections/4.3.0",
+      "hashPath": "system.collections.4.3.0.nupkg.sha512"
+    },
+    "System.Diagnostics.Debug/4.3.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-zhwS+q7yNqwIyDiHLKlzMr2rZSboo6XEp8/TD0fiEP35qwhazeMU6HD3e98KwnsEALfvHV9lP/mIQVdqDa6y2w==",
+      "path": "system.diagnostics.debug/4.3.0",
+      "hashPath": "system.diagnostics.debug.4.3.0.nupkg.sha512"
+    },
+    "System.Globalization/4.3.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-bgSC8A3/LPveqlo5ifPX4nuAGc5PjGzSfZsQTtgdtX4ce9Pz/AM0XvDYhr/DBwZxXqw72tyiY1cThMgQ5yADDA==",
+      "path": "system.globalization/4.3.0",
+      "hashPath": "system.globalization.4.3.0.nupkg.sha512"
+    },
+    "System.IO/4.3.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-MwwVbtMfGQiojl1KXUUJQzl93mLlRtC4wgMWb8tG6Wq2bVrtYaUbDKegmMu6YeRFd9hkfkavVggezBl4MmU/dw==",
+      "path": "system.io/4.3.0",
+      "hashPath": "system.io.4.3.0.nupkg.sha512"
+    },
+    "System.Linq/4.3.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-dhQv2Z5fjLiZ6kAoOsvx6bzeSmr+FFf2Gmfg9QiN+5P7FeQsMXq491iBy+lKzhlSi1YURhs+jT29Me4o2YxpuA==",
+      "path": "system.linq/4.3.0",
+      "hashPath": "system.linq.4.3.0.nupkg.sha512"
+    },
+    "System.Reflection/4.3.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-UBe7tT8QJ+K5LUUkmS2+rURWw9z/mFn5CeioG/S6MSkuTqzYBOhu+Y9hn7O2+RG7DYtY9FXXOfezxtR8vWUdng==",
+      "path": "system.reflection/4.3.0",
+      "hashPath": "system.reflection.4.3.0.nupkg.sha512"
+    },
+    "System.Reflection.Primitives/4.3.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ytQDJ/LdLituoZl714BZc3VBgV74nEsLShaHFxy454Ba7tiJIdcy48o1BdF8Sdi0FnkKAfDNgOeolpJvlEGzbA==",
+      "path": "system.reflection.primitives/4.3.0",
+      "hashPath": "system.reflection.primitives.4.3.0.nupkg.sha512"
+    },
+    "System.Resources.ResourceManager/4.3.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-8iOfnHL7uQCBrASxhFZF9WglRXzQU7iWf6LkHpjIxamC4EWN2W5ekaynh07nCwc+eHmTnJOdujXfi3fix69FHA==",
+      "path": "system.resources.resourcemanager/4.3.0",
+      "hashPath": "system.resources.resourcemanager.4.3.0.nupkg.sha512"
+    },
+    "System.Runtime/4.3.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Pe5wmaROC1cikXEf1Y7n+96CEoZQ8E4obmUH7KV4nvZDET14b3qWDpdL3T3TvHuVzr547GgITmJ8s7M9Y4wezA==",
+      "path": "system.runtime/4.3.0",
+      "hashPath": "system.runtime.4.3.0.nupkg.sha512"
+    },
+    "System.Runtime.Extensions/4.3.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-mWtBcAarESppKMyveYUfglEOlpMf7q59eHblkQhapn2G5oIYr0Ziv8WG0XBcVYXUy4FlJCww31W7kgGCETkKDQ==",
+      "path": "system.runtime.extensions/4.3.0",
+      "hashPath": "system.runtime.extensions.4.3.0.nupkg.sha512"
+    },
+    "System.Text.Encoding/4.3.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-yAvfoQP/wVRYzQQXCLYA/BpejkAKIrz5ODpTWaxNsgr3s8IG2dBaEEolGo1pT1bJE3PYpi7BspLviRY98sJeAA==",
+      "path": "system.text.encoding/4.3.0",
+      "hashPath": "system.text.encoding.4.3.0.nupkg.sha512"
+    },
+    "System.Text.RegularExpressions/4.3.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-dq5LVj8jArgjkqAIjucEpzibDCrQYbsldltKneWlp0XDAd1IXnmm4ZzaH+YurenmDfuVpPGsk9MZv6pUs6DMaQ==",
+      "path": "system.text.regularexpressions/4.3.0",
+      "hashPath": "system.text.regularexpressions.4.3.0.nupkg.sha512"
+    },
+    "System.Threading.Tasks/4.3.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-tyn9aVm9V50j+VvadPI8sL6Pf52eJOtzJAiBnIm8PTD/2nEJ15K5xH19mwBwXbwlLhZwQm9zYO7zawCAels7vQ==",
+      "path": "system.threading.tasks/4.3.0",
+      "hashPath": "system.threading.tasks.4.3.0.nupkg.sha512"
+    },
+    "FunctionalCalcLib/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "KweeLib/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "SpracheLib/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
