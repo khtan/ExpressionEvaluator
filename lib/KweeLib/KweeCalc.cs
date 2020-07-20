@@ -200,35 +200,27 @@ namespace KweeLib
                 {
                     switch (token)
                     {
-                        case "(": { break; }
-#if MOREOPERATORS
-                        case "-":
+                        case "(": {
+                            opStack.Push(token);
+                            break;
+                        }
                         case "+":
-#else
-                        case "+":
-#endif
                             {
-                                if (opStack.Count > 0 && doesTargetHaveHigherPrecedence(opStack.Peek(), token)) // higher precedence
-                                    {
-                                    string? opMsg = binaryCalcAndPush(opStack, valStack);
-                                    if(opMsg != null){
-                                        errorMessage = opMsg;
-                                        break;
-                                    }
+                                if (opStack.Count > 0 && opStack.Peek() != "(" && doesTargetHaveHigherPrecedence(opStack.Peek(), token)){
+                                        string? opMsg = binaryCalcAndPush(opStack, valStack);
+                                        if(opMsg != null){
+                                            errorMessage = opMsg;
+                                            break;
+                                        }
                                 }
                                 opStack.Push(token);
                                 break;
                             }
 
-#if MOREOPERATORS
-                        case "/":
                         case "*": { opStack.Push(token); break; }
-#else
-                        case "*": { opStack.Push(token); break; }
-#endif
                         case ")":
                             {
-                                while (opStack.Count > 0)
+                                while (opStack.Count > 0 && opStack.Peek() != "(")
                                 {
                                     string? opMsg = binaryCalcAndPush(opStack, valStack);
                                     if(opMsg != null){
@@ -236,6 +228,7 @@ namespace KweeLib
                                         break;
                                     }
                                 }
+                                if(opStack.Peek() == "(") opStack.Pop();
                                 break;
                             }
                         default:
@@ -246,8 +239,8 @@ namespace KweeLib
                     }
                 }
                 if(errorMessage == null){
-                    Trace.Assert(opStack.Count == 0);
-                    Trace.Assert(valStack.Count == 1);
+                    // Trace.Assert(opStack.Count == 0);
+                    // Trace.Assert(valStack.Count == 1);
                     returnValue = valStack.Pop();
                 }
             }

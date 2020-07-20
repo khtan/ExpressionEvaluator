@@ -50,7 +50,23 @@ For example, if the language you use has libraryÂ classes/functions for breakin
 
 ### Implementation details
 * Version Control : [Github](https://github.com/khtan/ExpressionEvaluator)
-* Continuous Integration : [CircleCI](https://circleci.com/gh/khtan/ExpressionEvaluator)
+* Continuous Integration : [CircleCI](https://circleci.com/gh/khtan/ExpressionEvaluator**
 * Test framework : console and XUnit.Net
 * Software environment : dotnet 3.1 and Visual Studio 2019 Community
 
+### Basic build information
+Getting the code:
+   > git clone https://github.com/khtan/ExpressionEvaluator.git
+
+Building the code with VS Community 2019:
+   Open the ExpressionEvaluator.sln file and do a build.
+   To run tests, click on the Test/Test Explorer and then select Run All Tests or Run as desired.
+
+Building the code with dotnet:
+There is also a way to build/run on the dotnet command line. This is how CircleCi does it.
+   Change directory in the shell to the root of the project
+   > dotnet restore // to pull in the dependencies
+   > dotnet test // to run all the tests
+
+console\KweeConsole\bin\Debug\netcoreapp3.1\KweeConsole.exe
+functionaltest\FunctionalSuite1\bin\Debug\netcoreapp3.1/FunctionalSuite1.dll
