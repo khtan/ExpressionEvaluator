@@ -191,8 +191,8 @@ namespace KweeLib
             var exprTuple = rationalizeExpression(userInput);
             if(exprTuple.Item1 != null)
             {
-                var opStack = new Stack<String>();
-                var valStack = new Stack<Double>();
+                var opStack = new Stack<String>(); // This holds current innermost paren grouping of operators, including outer "(" s
+                var valStack = new Stack<Double>(); // This holds the values of each operator
                 var parenExpression = exprTuple.Item1;
                 var listTokens = parenExpression.Split(new char[] { ' ' }); // Split cannot take empty character
 
@@ -209,7 +209,7 @@ namespace KweeLib
 #endif
                         case "+":
                             {
-                                if (opStack.Count > 0 && opStack.Peek() != "(" && doesTargetHaveHigherPrecedence(opStack.Peek(), token)){
+                                while (opStack.Count > 0 && opStack.Peek() != "(" && doesTargetHaveHigherPrecedence(opStack.Peek(), token)){
                                         string? opMsg = binaryCalcAndPush(opStack, valStack);
                                         if(opMsg != null){
                                             errorMessage = opMsg;
@@ -244,8 +244,12 @@ namespace KweeLib
                     }
                 }
                 if(errorMessage == null){
-                    // Trace.Assert(opStack.Count == 0);
-                    // Trace.Assert(valStack.Count == 1);
+                    // Turn off Trace.Assert for now - Test Explorer fails to report failure, tests stays grayed out pass, giving false impression
+                    // Console app will crash as intended.
+                    // It is possible that asserting here may have bad impact in the field. 
+                    // Using Debug to run tests locally but no affect delivered Release binaries
+                    Debug.Assert(opStack.Count == 0);
+                    Debug.Assert(valStack.Count == 1);
                     returnValue = valStack.Pop();
                 }
             }
