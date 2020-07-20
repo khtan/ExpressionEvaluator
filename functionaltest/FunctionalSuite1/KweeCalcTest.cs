@@ -36,7 +36,7 @@ namespace FunctionalSuite1
         [InlineData("2 ++ 4", "There are malformed constructs in the expression")]
         [InlineData("2 *+ 4", "There are malformed constructs in the expression")]
         [InlineData("2 +*+ 4", "There are malformed constructs in the expression")]
-        public void s00010_malformedPass(string expr, string expectedMessage){
+        public void s0010_malformedPass(string expr, string expectedMessage){
             TestAnExpression(expr, null, expectedMessage);
         }
 #if MOREOPERATORS

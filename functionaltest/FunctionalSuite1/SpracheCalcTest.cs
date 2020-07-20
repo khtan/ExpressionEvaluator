@@ -34,7 +34,7 @@ namespace FunctionalSuite1
         [InlineData("2 ++ 4", "Parsing failure: unexpected '+'; expected end of input (Line 1, Column 3); recently consumed: 2 ")]
         [InlineData("2 *+ 4", "Parsing failure: unexpected '*'; expected end of input (Line 1, Column 3); recently consumed: 2 ")]
         [InlineData("2 +*+ 4", "Parsing failure: unexpected '+'; expected end of input (Line 1, Column 3); recently consumed: 2 ")]
-        public void s00010_malformedFail(string expr, string expectedMessage){
+        public void s0010_malformedFail(string expr, string expectedMessage){
             TestAnExpression(expr, null, expectedMessage);
         }
     #endregion special tests
