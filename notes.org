@@ -54,26 +54,7 @@ For example, if the language you use has libraryÂ classes/functions for breakin
  * Software environment : dotnet 3.1 and Visual Studio 2019 Community
 *** Ideas seeded but not fully developed
 
-** Highlights
-
-** The API
-    /// <summary>
-    /// The fundamental functional interface is Func<string, Tuple<dynamic?, string?>>, ie
-    /// the input is an expression ( string )
-    /// and the output is a Tuple. 
-    /// The first value of the Tuple is a nullable dynamic, representing the value of the expression, if it evaluates without error.
-    /// The null represents a bad evaluation.
-    /// The second value of the Tuple is a nullable string, representing the error message if any.
-    /// The null represents no errors.
-    /// 
-    /// This library provides two implementations of the expression evaluator.
-    /// The KweeCalc is written by yours truly.
-    /// The SimpleCalculator is a test vehicle, pulled from 
-    /// </summary>
-[[file:lib/FunctionalCalcLib/Calc.cs::public static class Calc][Calc.cs]] has 2 implementations, CalcImplKwee and CalcImplSprache.
-CalcImplKwee is the ?
-CalcImplSprache is the ?
-
+** ?Highlights
 ** Preliminary research
 Initial research suggests that for industrial strength parsing, it is advisable to use something like Antlr.
 Since this project is for learning, I found a lightweight C# parser that I thought I could leverage upon.
@@ -110,6 +91,31 @@ There is also a complete java code implementation for reference.
 /// Additional helpers are refactored so that the original code logic is not obscured.
 /// 
 
+** 
+** The functional API
+    Given that we have one function to implement, it would seeem that the api would be quite simple. In C# parlance,
+it would be Func<string, Double). While that is minimal, it would be more useful to consider error conditions as well.
+
+Below is an excerpt from Calc.cs that implements this functional interface.
+
+    /// <summary>
+    /// The fundamental functional interface is Func<string, Tuple<dynamic?, string?>>, ie
+    /// the input is an expression ( string )
+    /// and the output is a Tuple. 
+    /// The first value of the Tuple is a nullable dynamic, representing the value of the expression, if it evaluates without error.
+    /// The null represents a bad evaluation.
+    /// The second value of the Tuple is a nullable string, representing the error message if any.
+    /// The null represents no errors.
+    /// 
+    /// This library provides two implementations of the expression evaluator.
+    /// The KweeCalc is written by yours truly.
+    /// The SimpleCalculator is a test buddy.
+    /// </summary>
+[[file:lib/FunctionalCalcLib/Calc.cs::public static class Calc][Calc.cs]] has 2 implementations, CalcImplKwee and CalcImplSprache.
+CalcImplKwee is the ?
+CalcImplSprache is the ?
+
+
 ** Deliverable
 https://www.codeproject.com/Articles/795056/Sprache-Calc-Building-Yet-Another-Expression-Evalu
 ** Code/Test organization
@@ -137,3 +143,6 @@ This is the functional test for
 1. Not very consistent with naming convention and brace placements.
 2. If the idea is simple but it takes a few lines to code, sometimes I try to keep the
    code in one line. This is very perl-lish in that ???
+
+console\KweeConsole\bin\Debug\netcoreapp3.1\KweeConsole.exe
+functionaltest\FunctionalSuite1\bin\Debug\netcoreapp3.1/FunctionalSuite1.dll
