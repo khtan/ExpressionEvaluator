@@ -75,7 +75,7 @@ namespace FunctionalSuite1
         [Theory]
         [InlineData("2.7 * 1.6", 4.32, null)]
         [InlineData("0.9999 * 0.9999", 0.99980001, null)]
-        public void s0012_precision(string expr, dynamic expectedResult, string? errorMsg){
+        public void f0012_precision(string expr, dynamic expectedResult, string? errorMsg){
             t0000_general(expr, expectedResult, errorMsg);
         }
         [Theory]
