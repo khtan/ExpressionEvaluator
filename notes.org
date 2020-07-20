@@ -90,8 +90,6 @@ There is also a complete java code implementation for reference.
 /// ...
 /// Additional helpers are refactored so that the original code logic is not obscured.
 /// 
-
-** 
 ** The functional API
     Given that we have one function to implement, it would seeem that the api would be quite simple. In C# parlance,
 it would be Func<string, Double). While that is minimal, it would be more useful to consider error conditions as well.
@@ -114,7 +112,6 @@ Below is an excerpt from Calc.cs that implements this functional interface.
 [[file:lib/FunctionalCalcLib/Calc.cs::public static class Calc][Calc.cs]] has 2 implementations, CalcImplKwee and CalcImplSprache.
 CalcImplKwee is the ?
 CalcImplSprache is the ?
-
 
 ** Deliverable
 https://www.codeproject.com/Articles/795056/Sprache-Calc-Building-Yet-Another-Expression-Evalu
@@ -146,3 +143,6 @@ This is the functional test for
 
 console\KweeConsole\bin\Debug\netcoreapp3.1\KweeConsole.exe
 functionaltest\FunctionalSuite1\bin\Debug\netcoreapp3.1/FunctionalSuite1.dll
+
+
+
