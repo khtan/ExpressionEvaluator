@@ -132,10 +132,11 @@ Below is an excerpt from Calc.cs that implements this functional interface.
 
 * Try to keep the original structure intact
 * Keep the Evaluate function simple by ensuring that the input is cleaned up or rationalized
-  Helper functions are used to check the user input string : HasEmptyConstructs, HasMalformedConstructs, hasValidCharacters, isParenBalanced.
-  After these checks, ensureSingleSpace expands all the keywords with spaces, and then the multiple spaces are
-  collapsed to single space. 
-  This results in a rationalized string that is useable by Evaluate without too much check.
+
+Helper functions are used to check the user input string : HasEmptyConstructs, HasMalformedConstructs, hasValidCharacters, isParenBalanced. After these checks, ensureSingleSpace expands all the keywords with spaces, and then the multiple spaces are collapsed to single space. 
+
+This results in a rationalized string that is useable by Evaluate without too much check.
+
 * The Sedgewick code did not take into account operator precedence and its interaction with the left "("
 * The CiCd process helps to automate the mundance stuff such as 
   1. I tend to work on Debug builds, so I set CircleCi to run the tests on Release. This eliminates a source of issue.
@@ -147,7 +148,7 @@ Below is an excerpt from Calc.cs that implements this functional interface.
 
 ## Adding more binary operators
 The code uses #define MOREOPERATORS to show where the changes are in order to support the other 2 binary
-operators "-" and "/". 
+operators "-" and "/". There is a small set of tests that checks the 2 additional binary operators as well.
 
     > grep -r MOREOPERATORS .
     > ./functionaltest/FunctionalSuite1/KweeCalcTest.cs:// #define MOREOPERATORS
@@ -160,6 +161,11 @@ operators "-" and "/".
     > ./lib/KweeLib/KweeCalc.cs:#if MOREOPERATORS
     > ./lib/KweeLib/KweeCalc.cs:#if MOREOPERATORS
     > 
+## Adding unary operators
+* Might have to distinguish between a unary -2 and a binary 5-2
+* The precedence rules still remain at 2 levels, {+,-} and {*,/}
+* Also depends whether we want prefix or post fix unary
+
 # Code/Test organization
 
 The code is organized into 3 folders :
