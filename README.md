@@ -105,8 +105,11 @@ There is also a complete java code implementation for reference.
 
    > dotnet test // to run all the tests
    
-   If you need to install dotnet core, look at [Microsoft Download .NET](https://dotnet.microsoft.com/download). Select the button for Build Apps, with the button called "Download .NET Core SDK".
-   
+   If you need to install dotnet core, look at [Microsoft Download .NET](https://dotnet.microsoft.com/download). Under the .NET Core section, select the button for Build Apps, with the button called "Download .NET Core SDK". After the install, you can verify the installation by opening a cmd shell and entering "dotnet --version". It should respond with the version number, example :
+
+   >dotnet --version
+   > 3.1.302
+
 # Design
 ## The functional API
 
