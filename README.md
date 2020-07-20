@@ -8,6 +8,9 @@
 - [Basic build information](#basic-build-information)
 - [Design](#design)
   - [The functional API](#the-functional-api)
+  - [Incrementally improving on Sedgewick's algorithm](#incrementally-improving-on-sedgewicks-algorithm)
+  - [Adding more binary operators](#adding-more-binary-operators)
+  - [Adding unary operators](#adding-unary-operators)
 - [Code/Test organization](#codetest-organization)
   - [1. lib](#1-lib)
   - [2. console](#2-console)
@@ -344,5 +347,3 @@ The above runs the tests with results.
 If you are using Visual Studio 2019 Community, the Test Explorer can be used.
 
 ![Sample image of Test Explorer](images/DebugTests.png)
-
-
