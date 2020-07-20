@@ -196,8 +196,25 @@ dotnet cli.
    SpracheCalcTest.cs   | The same functional tests, using CalcImplSprache
    CommonCalcTest.cs    | Reusable tests that are common between KweeCalc and SpracheCalc
 
+There is a simple naming convention for the tests : {prefix-char}{4 digit number}_{shortdescription}
+
+   Prefix | Meaning                                                             | Example
+   -------|---------------------------------------------------------------------|-----------------------------------------------------------------------
+   t      | test                                                                | CommonCalcTest/t0004_precedence
+   s      | self test, specific to only KweeCalc or SpracheCalc                 | SpracheCalcTest/s0010_malformedFail, KweeCalcTest/s0010_malformedPass
+   f      | shared (forwarded) test, so that they actually call a common t test | KweeCalcTest/f0004_precedence, SpracheCalcTest/f0004_precedence
+
+   In the above examples, KweeCalcTest/f0004_precedence and SpracheCalcTest/f0004_precedence both call the same test in CommonCalcTest/t0004_precedence.
+   The test KweeCalcTest/s0010_malformedPass indicates that KweeCalc handles this set of conditions while SpracheCalcTest/s0010_malformedFail does not.
+   The failure is checked against the error message, and is condiered a "pass" in the testing framework.
+   
+   
+   The 4 digit number is used to provide an ordering, to show either how the functions got developed or the recommended sequence
+   when a new user/engineer needs to understand the tests. Otherwise, it is a bunch of loosely coupled tests and makes it harder
+   to understand the scope of all the tests.
+   
 ### dotnet session
-Below is a transcript showing how to run the functional tests using dotnet.
+Below is a transcript showing how to run all the unit and functional tests using dotnet.
 
     > c:\cprojects\github\circleci\ExpressionEvaluator>dotnet restore
     > dotnet restore
@@ -269,6 +286,7 @@ The above runs the tests with results.
 
 ### Visual Studio session
 If you are using Visual Studio 2019 Community, the Test Explorer can be used.
+
 ![Sample image of Test Explorer](images/DebugTests.png)
 
 
