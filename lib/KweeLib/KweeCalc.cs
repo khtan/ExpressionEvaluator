@@ -206,10 +206,8 @@ namespace KweeLib
                         }
 #if MOREOPERATORS
                         case "-":
-                        case "+":
-#else
-                        case "+":
 #endif
+                        case "+":
                             {
                                 if (opStack.Count > 0 && opStack.Peek() != "(" && doesTargetHaveHigherPrecedence(opStack.Peek(), token)){
                                         string? opMsg = binaryCalcAndPush(opStack, valStack);
@@ -223,10 +221,8 @@ namespace KweeLib
                             }
 #if MOREOPERATORS
                         case "/":
-                        case "*":
-#else
-                        case "*": { opStack.Push(token); break; }
 #endif
+                        case "*": { opStack.Push(token); break; }
                         case ")":
                             {
                                 while (opStack.Count > 0 && opStack.Peek() != "(")

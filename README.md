@@ -1,4 +1,20 @@
 [![CircleCI Status](https://circleci.com/gh/khtan/ExpressionEvaluator.svg?style=shield)](https://circleci.com/gh/khtan/ExpressionEvaluator)
+- [ExpressionEvaluator](#expressionevaluator)
+  - [1. Problem statement](#1-problem-statement)
+  - [2. Clarifications](#2-clarifications)
+  - [3. Additional assumptions](#3-additional-assumptions)
+- [Preliminary research](#preliminary-research)
+- [Implementation details](#implementation-details)
+- [Basic build information](#basic-build-information)
+- [Design](#design)
+  - [The functional API](#the-functional-api)
+- [Code/Test organization](#codetest-organization)
+  - [1. lib](#1-lib)
+  - [2. console](#2-console)
+  - [3. functionaltest](#3-functionaltest)
+    - [dotnet session](#dotnet-session)
+    - [Visual Studio session](#visual-studio-session)
+
 # ExpressionEvaluator
 This is the programming assignment for an SDET Test and Automation position.
 ## 1. Problem statement
@@ -98,7 +114,7 @@ Below is an excerpt from Calc.cs that implements this functional interface.
 
     /// <summary>
     /// The fundamental functional interface is Func<string, Tuple<dynamic?, string?>>, ie
-    /// the input is an expression ( string )
+    /// the input is an expression ( string **
     /// and the output is a Tuple. 
     /// The first value of the Tuple is a nullable dynamic, representing the value of the expression, if it evaluates without error.
     /// The null would represents a bad evaluation.
@@ -110,6 +126,40 @@ Below is an excerpt from Calc.cs that implements this functional interface.
     /// The SimpleCalculator is a test buddy.
     /// </summary>
 
+## Incrementally improving on Sedgewick's algorithm
+
+![A page from Sedgewick's ](images/DijkstraTwoStackAlgorithm.png)
+
+* Try to keep the original structure intact
+* Keep the Evaluate function simple by ensuring that the input is cleaned up or rationalized
+  Helper functions are used to check the user input string : HasEmptyConstructs, HasMalformedConstructs, hasValidCharacters, isParenBalanced.
+  After these checks, ensureSingleSpace expands all the keywords with spaces, and then the multiple spaces are
+  collapsed to single space. 
+  This results in a rationalized string that is useable by Evaluate without too much check.
+* The Sedgewick code did not take into account operator precedence and its interaction with the left "("
+* The CiCd process helps to automate the mundance stuff such as 
+  1. I tend to work on Debug builds, so I set CircleCi to run the tests on Release. This eliminates a source of issue.
+  2. I work on Windows, so I set CircleCi to run the tests on Linux and Windows. It is amazing that the Linux docker machine
+     is typically 2x faster than the Windows virtual machine.
+  3. Automatic regression detection
+* Found that the use of a Tuple to return value and error message allows a more functional flow of processing.
+  This is akin to the functional types Option and Either.
+
+## Adding more binary operators
+The code uses #define MOREOPERATORS to show where the changes are in order to support the other 2 binary
+operators "-" and "/". 
+
+    > grep -r MOREOPERATORS .
+    > ./functionaltest/FunctionalSuite1/KweeCalcTest.cs:// #define MOREOPERATORS
+    > ./functionaltest/FunctionalSuite1/KweeCalcTest.cs:#if MOREOPERATORS
+    > ./lib/KweeLib/KweeCalc.cs:// #define MOREOPERATORS
+    > ./lib/KweeLib/KweeCalc.cs:#if MOREOPERATORS
+    > ./lib/KweeLib/KweeCalc.cs:#if MOREOPERATORS
+    > ./lib/KweeLib/KweeCalc.cs:#if MOREOPERATORS
+    > ./lib/KweeLib/KweeCalc.cs:#if MOREOPERATORS
+    > ./lib/KweeLib/KweeCalc.cs:#if MOREOPERATORS
+    > ./lib/KweeLib/KweeCalc.cs:#if MOREOPERATORS
+    > 
 # Code/Test organization
 
 The code is organized into 3 folders :
