@@ -79,7 +79,7 @@ namespace FunctionalSuite1
         [Theory]
         [InlineData("2\t+\t5", 7)]
         [InlineData("2\t*\t5", 10)]
-        public void f0009_tabExpr(string expr, dynamic expectedResult){ t0009_tabExpr(expr, expectedResult); }
+        public void f0009_tabExpr(string expr, dynamic expectedResult){ t0000_general(expr, expectedResult, null); }
         [Theory]
         [InlineData("2147483647 + 1", 2147483648)]
         [InlineData("9999999999 + 1", 10000000000)]
@@ -87,13 +87,13 @@ namespace FunctionalSuite1
         public void f0011_largeValues(string expr, dynamic expectedResult){
             // int.MaxValue = 2147483647
             // double.MaxValue = 1.7976931348623157E+308
-            t0011_largeValues(expr, expectedResult);
+            t0000_general(expr, expectedResult, null);
         }
         [Theory]
         [InlineData("2.7 * 1.6", 4.32, null)]
         [InlineData("0.9999 * 0.9999", 0.99980001, null)]
         public void s0012_precision(string expr, dynamic expectedResult, string? errorMsg){
-            t0012_precision(expr, expectedResult, errorMsg);
+            t0000_general(expr, expectedResult, errorMsg);
         }
         [Theory]
         [InlineData("(2 + 9) * (2 + 12) * (12 + 13) + (3 * (16 * 8) * (19 * 6))", 47626, null)]

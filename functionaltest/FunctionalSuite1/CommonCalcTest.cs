@@ -67,15 +67,6 @@ namespace FunctionalSuite1
         {
             TestAnExpression("2 * 3 + 5 * 7 + 9 * 11", 140);
         }
-        public void t0009_tabExpr(string expr, dynamic expectedResult){
-            TestAnExpression(expr, expectedResult);
-        }
-        public void t0011_largeValues(string expr, dynamic expectedResult){
-            TestAnExpression(expr, expectedResult);
-        }
-        public void t0012_precision(string expr, dynamic expectedResult, string? errorMsg){
-            TestAnExpression(expr, expectedResult, errorMsg);
-        }
     #endregion tests
     }
 }
