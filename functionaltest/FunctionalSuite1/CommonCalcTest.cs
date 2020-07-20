@@ -42,13 +42,8 @@ namespace FunctionalSuite1
         }
     #endregion testhelpers
     #region tests
-        public void t0000_Add(string expr, dynamic expectedResult)
-        {
-            TestAnExpression(expr, expectedResult);
-        }
-        public void t0000_Mult(string expr, dynamic expectedResult)
-        {
-            TestAnExpression(expr, expectedResult);
+        public void t0000_general(string expr, dynamic expectedResult, string expectedErrorMsg){
+            TestAnExpression(expr, expectedResult, expectedErrorMsg);
         }
         public void t0001_parenthesis(){
             TestAnExpression("(((3)))", 3);

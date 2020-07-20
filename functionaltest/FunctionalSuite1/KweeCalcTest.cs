@@ -63,13 +63,13 @@ namespace FunctionalSuite1
         [InlineData("3 + 2", 5)]
         [InlineData("2.0 + 3.0", 5.0)]
         [InlineData("3.0 + 2.0", 5.0)]
-        public void f0000_Add(string expr, dynamic expectedResult) { t0000_Add(expr, expectedResult); }
+        public void f0000_Add(string expr, dynamic expectedResult) { t0000_general(expr, expectedResult, null); }
         [Theory]
         [InlineData("2 * 3", 6)]
         [InlineData("3 * 2", 6)]
         [InlineData("2.0 * 3.0", 6.0)]
         [InlineData("3.0 * 2.0", 6.0)]
-        public void f0000_Mult(string expr, dynamic expectedResult) { t0000_Mult(expr, expectedResult); }
+        public void f0000_Mult(string expr, dynamic expectedResult) { t0000_general(expr, expectedResult, null); }
         [Fact] public void f0001_parenthesis() { t0001_parenthesis(); }
         [Fact] public void f0003_decimal() { t0002_decimal(); }
         [Fact] public void f0004_precedence() { t0004_precedence(); }
@@ -94,6 +94,12 @@ namespace FunctionalSuite1
         [InlineData("0.9999 * 0.9999", 0.99980001, null)]
         public void s0012_precision(string expr, dynamic expectedResult, string? errorMsg){
             t0012_precision(expr, expectedResult, errorMsg);
+        }
+        [Theory]
+        [InlineData("(2 + 9) * (2 + 12) * (12 + 13) + (3 * (16 * 8) * (19 * 6))", 47626, null)]
+        [InlineData("3 * 3 * 3 + 2 * 2", 31, null)]
+        public void f0013_longchain(string expr, dynamic expectedResult, string? errorMsg){
+            t0000_general(expr, expectedResult, errorMsg);
         }
     #endregion forwarded tests
     }
