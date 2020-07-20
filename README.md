@@ -115,7 +115,7 @@ Below is an excerpt from Calc.cs that implements this functional interface.
 ### Code/Test organization
 
 The code is organized into 3 folders :
-#### 1. lib
+### 1. lib
 
 This contains the source code for the libraries.
 
@@ -130,7 +130,7 @@ Each library <libraryName> has its accompanying <libraryName>.test that is its c
     FunctionalCalcLib      | Implementation of functional interface, to isolate from SpracheLib and KweeLib
     FunctionalCalcLib.test | unit tests for FunctionalCalcLib
     
-#### 2. console
+### 2. console
 This provides console drivers that wraps the functionality in the libraries for convenient and direct use.
 It also uses the functional interface instead of directly using the libraries.
 It is a minimal console and does not have help options etc. 
@@ -186,7 +186,7 @@ Above is how to redirect test1.input to the console. Note the reason for the ech
     
 Above shows the content of test1.input
 
-#### 3. functionaltest
+### 3. functionaltest
 
 This is the functional test library for both KweeCalc and SpracheCalc. They can be run from Visual Studio or
 dotnet cli.
@@ -197,4 +197,80 @@ dotnet cli.
    KweeCalcTest.cs      | The functional tests, using CalcImplKwee
    SpracheCalcTest.cs   | The same functional tests, using CalcImplSprache
    CommonCalcTest.cs    | Reusable tests that are common between KweeCalc and SpracheCalc
+
+#### dotnet session
+Below is a transcript showing how to run the functional tests using dotnet.
+
+    > c:\cprojects\github\circleci\ExpressionEvaluator>dotnet restore
+    > dotnet restore
+    >   Determining projects to restore...
+    >   Restored c:\cprojects\github\circleci\ExpressionEvaluator\lib\KweeLib\KweeLib.csproj (in 275 ms).
+    >   Restored c:\cprojects\github\circleci\ExpressionEvaluator\lib\SpracheLib\SpracheLib.csproj (in 350 ms).
+    >   Restored c:\cprojects\github\circleci\ExpressionEvaluator\console\SpracheConsole\SpracheConsole.csproj (in 354 ms).
+    >   Restored c:\cprojects\github\circleci\ExpressionEvaluator\console\KweeConsole\KweeConsole.csproj (in 350 ms).
+    >   Restored c:\cprojects\github\circleci\ExpressionEvaluator\lib\FunctionalCalcLib\FunctionalCalcLib.csproj (in 354 ms).
+    >   Restored c:\cprojects\github\circleci\ExpressionEvaluator\lib\SpracheLib.test\SpracheLib.test.csproj (in 148 ms).
+    >   Restored c:\cprojects\github\circleci\ExpressionEvaluator\lib\KweeLib.test\KweeLib.test.csproj (in 473 ms).
+    >   Restored c:\cprojects\github\circleci\ExpressionEvaluator\lib\FunctionalCalcLib.test\FunctionalCalcLib.test.csproj (in 473 ms).
+    >   Restored c:\cprojects\github\circleci\ExpressionEvaluator\functionaltest\FunctionalSuite1\FunctionalSuite1.csproj (in 474 ms).
+    > 
+The above restores the dependencies.
+
+    > c:\cprojects\github\circleci\ExpressionEvaluator>dotnet test
+    > dotnet test
+    > Test run for c:\cprojects\github\circleci\ExpressionEvaluator\lib\KweeLib.test\bin\Debug\netcoreapp3.1\KweeLib.test.dll(.NETCoreApp,Version=v3.1)
+    > Test run for c:\cprojects\github\circleci\ExpressionEvaluator\lib\SpracheLib.test\bin\Debug\netcoreapp3.1\SpracheLib.test.dll(.NETCoreApp,Version=v3.1)
+    > Microsoft (R) Test Execution Command Line Tool Version 16.6.0
+    > Copyright (c) Microsoft Corporation.  All rights reserved.
+    > 
+    > Microsoft (R) Test Execution Command Line Tool Version 16.6.0
+    > Copyright (c) Microsoft Corporation.  All rights reserved.
+    > 
+    > Starting test execution, please wait...
+    > Starting test execution, please wait...
+    > Test run for c:\cprojects\github\circleci\ExpressionEvaluator\functionaltest\FunctionalSuite1\bin\Debug\netcoreapp3.1\FunctionalSuite1.dll(.NETCoreApp,Version=v3.1)
+    > 
+    > A total of 1 test files matched the specified pattern.
+    > 
+    > A total of 1 test files matched the specified pattern.
+    > Test run for c:\cprojects\github\circleci\ExpressionEvaluator\lib\FunctionalCalcLib.test\bin\Debug\netcoreapp3.1\FunctionalCalcLib.test.dll(.NETCoreApp,Version=v3.1)
+    > Microsoft (R) Test Execution Command Line Tool Version 16.6.0
+    > Copyright (c) Microsoft Corporation.  All rights reserved.
+    > 
+    > Microsoft (R) Test Execution Command Line Tool Version 16.6.0
+    > Copyright (c) Microsoft Corporation.  All rights reserved.
+    > 
+    > Starting test execution, please wait...
+    > 
+    > A total of 1 test files matched the specified pattern.
+    > Starting test execution, please wait...
+    > 
+    > A total of 1 test files matched the specified pattern.
+    > 
+    > Test Run Successful.
+    > Total tests: 4
+    >      Passed: 4
+    >  Total time: 1.6196 Seconds
+    > 
+    > Test Run Successful.
+    > Total tests: 3
+    >      Passed: 3
+    >  Total time: 1.6048 Seconds
+    > 
+    > Test Run Successful.
+    > Total tests: 64
+    >      Passed: 64
+    >  Total time: 1.6612 Seconds
+    > 
+    > Test Run Successful.
+    > Total tests: 3
+    >      Passed: 3
+    >  Total time: 1.6621 Seconds
+    > 
+The above runs the tests with results.
+
+#### Visual Studio session
+If you are using Visual Studio 2019 Community, the Test Explorer can be used.
+![Sample image of Test Explorer](images/DebugTests.png)
+
 
