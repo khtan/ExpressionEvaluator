@@ -105,7 +105,7 @@ There is also a complete java code implementation for reference.
 
    > dotnet test // to run all the tests
    
-   If you need to install dotnet core, look at [Microsoft Install .NET Core on Windows](https://docs.microsoft.com/en-us/dotnet/core/install/windows?tabs=netcore31). There is a button to "Download .NET Core" which can be run to install.
+   If you need to install dotnet core, look at [Microsoft Download .NET](https://dotnet.microsoft.com/download). Select the button for Build Apps, with the button called "Download .NET Core SDK".
    
 # Design
 ## The functional API
