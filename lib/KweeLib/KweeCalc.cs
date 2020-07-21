@@ -200,10 +200,7 @@ namespace KweeLib
                 {
                     switch (token)
                     {
-                        case "(": {
-                            opStack.Push(token);
-                            break;
-                        }
+                        case "(": { opStack.Push(token); break; }
 #if MOREOPERATORS
                         case "-":
 #endif
@@ -223,7 +220,7 @@ namespace KweeLib
                         case "/":
 #endif
                         case "*": { opStack.Push(token); break; }
-                        case ")":
+                        case ")": // process all pending operations in this paren group
                             {
                                 while (opStack.Count > 0 && opStack.Peek() != "(")
                                 {
@@ -236,11 +233,7 @@ namespace KweeLib
                                 if(opStack.Peek() == "(") opStack.Pop();
                                 break;
                             }
-                        default:
-                            {
-                                valStack.Push(Double.Parse(token));
-                                break;
-                            }
+                        default: { valStack.Push(Double.Parse(token)); break; }
                     }
                 }
                 if(errorMessage == null){
@@ -253,10 +246,7 @@ namespace KweeLib
                     returnValue = valStack.Pop();
                 }
             }
-            else
-            {
-                errorMessage = exprTuple.Item2;
-            }
+            else { errorMessage = exprTuple.Item2; }
             return Tuple.Create(returnValue, errorMessage);
         }// Evaluate
     #endregion Evaluate
