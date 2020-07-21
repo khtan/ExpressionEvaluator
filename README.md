@@ -18,7 +18,6 @@
     - [dotnet session](#dotnet-session)
     - [Visual Studio session](#visual-studio-session)
 
-
 # ExpressionEvaluator
 This is the programming assignment for an SDET Test and Automation position.
 ## 1. Problem statement
