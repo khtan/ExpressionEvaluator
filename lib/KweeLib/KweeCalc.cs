@@ -192,7 +192,7 @@ namespace KweeLib
         /// The second value of the Tuple is a nullable string, representing the error message if any.
         /// The null represents no errors.
         /// </summary>
-        public Tuple<Double?,string?> Evaluate(string userInput)
+        public Tuple<dynamic?,string?> Evaluate(string userInput)
         {
             double? returnValue = null;
             string? errorMessage = null;
@@ -256,7 +256,7 @@ namespace KweeLib
                 }
             }
             else { errorMessage = exprTuple.Item2; }
-            return Tuple.Create(returnValue, errorMessage);
+            return new Tuple<dynamic?, string?>(returnValue, errorMessage);
         }// Evaluate
     #endregion Evaluate
     }// class

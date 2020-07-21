@@ -42,17 +42,7 @@ namespace FunctionalCalcLib
 
         public static Tuple<dynamic?, string?> CalcImplKwee(string expr)
         {
-            string? errorMessage = null;
-            dynamic? value = null;
-            var tuple = Kwee.Evaluate(expr);
-            if (tuple.Item1 != null) { 
-                value = tuple.Item1; 
-            }
-            if (tuple.Item2 != null)
-            {
-                errorMessage = tuple.Item2;
-            }
-            return new Tuple<dynamic?, string?>(value, errorMessage);
+            return Kwee.Evaluate(expr);
         }
     }
 }
