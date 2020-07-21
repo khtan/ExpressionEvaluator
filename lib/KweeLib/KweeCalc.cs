@@ -183,6 +183,15 @@ namespace KweeLib
         }
     #endregion helpers
     #region Evaluate
+        /// <summary>
+        /// The Evaluate function conforms to the functional interface, Func<string, Tuple<dynamic?, string?>>, ie
+        ///    the input is an expression ( string )
+        ///    and the output is a Tuple. 
+        /// The first value of the Tuple is a nullable dynamic, representing the value of the expression, if it evaluates without error.
+        /// The null represents a bad evaluation.
+        /// The second value of the Tuple is a nullable string, representing the error message if any.
+        /// The null represents no errors.
+        /// </summary>
         public Tuple<Double?,string?> Evaluate(string userInput)
         {
             double? returnValue = null;

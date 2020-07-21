@@ -17,12 +17,13 @@ namespace FunctionalSuite1
     #endregion class internals
     #region smoke tests
         [Theory]
-        [InlineData("5+14", 19)]
-        [InlineData("(8+2)*4", 40)]
-        [InlineData("7+3+9", 19 )]
-        [InlineData("(6 + 5) * (8 + 2)", 110)]
-        public void s0001_smoke(string expr, dynamic expectedResult){
-            TestAnExpression(expr, expectedResult);
+        [InlineData("5+14"   , 19, null)]
+        [InlineData("(8+2)*4", 40, null)]
+        [InlineData("7+3+9"  , 19, null)]
+        [InlineData("(6 + 5) * (8 + 2)", 110, null)]
+        [InlineData(" 2 + hello", null, "There are invalid characters in the expression")]
+        public void s0001_smoke(string expr, dynamic? expectedResult, string? errorMsg){
+            TestAnExpression(expr, expectedResult, errorMsg);
         }
     #endregion special tests
     }
