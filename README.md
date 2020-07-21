@@ -22,9 +22,13 @@
 This is the programming assignment for an SDET Test and Automation position.
 ## 1. Problem statement
  Write a program to evaluate arithmetic expressions.  Input will be text expression strings.  Here are some examples:
+
  5 + 14
+
  (8 + 2) * 4
+ 
  7 + 3 + 9
+
  (6 + 5) * (8 + 2)
 
  Your solution should:
@@ -37,6 +41,7 @@ This is the programming assignment for an SDET Test and Automation position.
 ## 2. Clarifications
 The main clarification was on why/whether the Shunting Yard (SY) algorithm should not be used.
 
+Question:
 > The requirement asked that I not use SY. The wiki page indicates SY is an algorithm for parsing mathematicalÂ  expressions specified in infix notation. It can also
 > be used to convert an infix notation to a pre/post fix notation.
 > Sedgewick calls it Dijkstra's Two-Stack algorithm. Many online examples use SY without mentioning it. The tell-tale sign is probably the single pass that
@@ -48,9 +53,11 @@ The main clarification was on why/whether the Shunting Yard (SY) algorithm shoul
 >
 > Is that your intent?
 
+Answer:
+
 The intent is that you not copy a readily available solution from the Internet. We want to see an approach that you design and implement.
 It is okay for you to use available language libraries to help you out.
-For example, if the language you use has libraryÂ classes/functions for breaking a string into tokens, you can use the library and not write a tokenizer from scratch.
+For example, if the language you use has library classes/functions for breaking a string into tokens, you can use the library and not write a tokenizer from scratch.
 
 ## 3. Additional assumptions
 1) Numbers are base10
