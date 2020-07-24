@@ -1,6 +1,4 @@
 #nullable enable
-// Remove comment to add '/' and '-' operators
-// #define MOREOPERATORS
 
 using Xunit;
 using Xunit.Abstractions;
@@ -39,20 +37,6 @@ namespace FunctionalSuite1
         public void s0010_malformedPass(string expr, string expectedMessage){
             TestAnExpression(expr, null, expectedMessage);
         }
-#if MOREOPERATORS
-        [Theory]
-        [InlineData("4/2", 2, null)]
-        [InlineData("4/0", double.PositiveInfinity, null)]
-        public void s0099_divide(string expr, dynamic expectedResult, string? errorMsg){
-            TestAnExpression(expr, expectedResult, errorMsg);
-        }
-        [Theory]
-        [InlineData("4 - 2", 2, null)]
-        [InlineData("2 - 4", -2, null)]
-        public void s0099_subtract(string expr, dynamic expectedResult, string? errorMsg){
-            TestAnExpression(expr, expectedResult, errorMsg);
-        }
-#endif
     #endregion special tests
     #region forwarded tests
         // Below are forwarding tests to the base class.

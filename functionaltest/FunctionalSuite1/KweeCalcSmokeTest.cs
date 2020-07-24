@@ -1,4 +1,6 @@
 #nullable enable
+// Remove comment to add '/' and '-' operators
+// #define MOREOPERATORS
 
 using Xunit;
 using Xunit.Abstractions;
@@ -25,6 +27,24 @@ namespace FunctionalSuite1
         public void s0001_smoke(string expr, dynamic? expectedResult, string? errorMsg){
             TestAnExpression(expr, expectedResult, errorMsg);
         }
+#if MOREOPERATORS
+        [Theory]
+        [InlineData("4/2", 2, null)]
+        [InlineData("4/0", double.PositiveInfinity, null)]
+        public void s0099_divide(string expr, dynamic expectedResult, string? errorMsg){
+            TestAnExpression(expr, expectedResult, errorMsg);
+        }
+        [Theory]
+        [InlineData("4 - 2", 2, null)]
+        [InlineData("2 - 4", -2, null)]
+        [InlineData("7-2-1", 4, null)]
+        [InlineData("37-17-7-3", 10, null)]
+        [InlineData("(((37))-((17))-((7))-((3)))", 10, null)]
+        [InlineData("(7*4) -6 -(2 + 11)", 9, null)]
+        public void s0099_subtract(string expr, dynamic expectedResult, string? errorMsg){
+            TestAnExpression(expr, expectedResult, errorMsg);
+        }
+#endif
     #endregion special tests
     }
 }
