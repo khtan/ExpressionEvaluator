@@ -11,7 +11,6 @@ namespace FunctionalSuite1
     public class KweeCalcSmokeTest : CommonCalcTest
     {
     #region class internals
-        public ITestOutputHelper Output;
         public KweeCalcSmokeTest(ITestOutputHelper output) {
             this.Output = output;
             this.CalcFn = Calc.CalcImplKwee;

@@ -9,7 +9,6 @@ namespace FunctionalSuite1
     public class KweeCalcTest : CommonCalcTest
     {
     #region class internals
-        public ITestOutputHelper Output;
         public KweeCalcTest(ITestOutputHelper output) {
             this.Output = output;
             this.CalcFn = Calc.CalcImplKwee;

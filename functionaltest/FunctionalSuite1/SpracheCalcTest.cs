@@ -9,7 +9,6 @@ namespace FunctionalSuite1
     public class SpracheCalcTest : CommonCalcTest
     {
     #region class internals
-        public ITestOutputHelper Output;
         public SpracheCalcTest(ITestOutputHelper output) { 
             this.Output = output;
             this.CalcFn = Calc.CalcImplSprache;

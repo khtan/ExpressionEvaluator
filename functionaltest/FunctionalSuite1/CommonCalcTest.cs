@@ -1,6 +1,7 @@
 #nullable enable
 using System;
 using System.Diagnostics.CodeAnalysis;
+using Xunit.Abstractions;
 using FluentAssertions;
 
 namespace FunctionalSuite1
@@ -9,7 +10,8 @@ namespace FunctionalSuite1
     {
            // [MaybeNull] attribute not disabling CS8618 warning
            // Warning CS8618  Non-nullable field 'CalcFn' is uninitialized.Consider declaring the field as nullable.FunctionalSuite1 C:\cprojects\github\circleci\ExpressionEvaluator\functionaltest\FunctionalSuite1\CommonCalcTest.cs	12	Active
-           [MaybeNull] public Func<string, Tuple<dynamic?, string?>> CalcFn; 
+        [MaybeNull] public ITestOutputHelper Output;
+        [MaybeNull] public Func<string, Tuple<dynamic?, string?>> CalcFn;
     #region testhelpers
         protected void TestAnExpression(string expr, dynamic? expected, string? errorMessage = null)
         {
@@ -25,6 +27,9 @@ namespace FunctionalSuite1
                 */
                 Double? d = t.Item1;
                 string? m = t.Item2;
+                if (d != null) Output.WriteLine($"v = {d}");
+                if (m != null) Output.WriteLine($"m = {m}");
+
                 if (expected != null)
                 {
                     // Bug in FluentAssertions
