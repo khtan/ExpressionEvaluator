@@ -3,6 +3,7 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using Xunit.Abstractions;
 using FluentAssertions;
+using Xunit.Sdk;
 
 namespace FunctionalSuite1
 {
@@ -37,7 +38,12 @@ namespace FunctionalSuite1
                     // d.Should().BeApproximately(expected, 0.00000001);
                     // Below is workaround
                     // https://github.com/fluentassertions/fluentassertions/issues/101
-                    NumericAssertionsExtensions.BeApproximately(d.Should(), expected, 0.00000001);
+                    if(  (!Double.IsPositiveInfinity((Double)d) && !Double.IsPositiveInfinity((Double)expected))
+                       && ( !Double.IsNegativeInfinity((Double)d) && !Double.IsNegativeInfinity((Double)expected) )
+                        ) {
+                        // ?Bug in FluentAssertions BeApproximately should also compare infinities as equal
+                        NumericAssertionsExtensions.BeApproximately(d.Should(), expected, 0.00000001);
+                    }
                 }
                 if (errorMessage != null)
                 {

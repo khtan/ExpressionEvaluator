@@ -1,6 +1,6 @@
 ﻿#nullable enable
 // Remove comment to add '/' and '-' operators
-// #define MOREOPERATORS
+#define MOREOPERATORS
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -88,6 +88,16 @@ namespace KweeLib
             }
             return returnVal;
         }
+        private bool doesTargetHaveHigherOrEqualPrecedence(string targetOp, string currentOp)
+        {
+            bool returnVal = false;
+            if (currentOp == "+" || currentOp == "-")
+            {
+                if(targetOp == "*" || targetOp == "/") { returnVal = true; }
+                if(targetOp == "+" || targetOp == "-"){ returnVal = true; }
+            }
+            return returnVal;
+        }
         private bool HasMalformedConstructs(string input){
             bool returnVal = false;
             // empty braces
@@ -168,7 +178,7 @@ namespace KweeLib
                 var firstValue = valStack.Pop();
                 Double computedValue = 0;
                 if (op == "+") computedValue = firstValue + secondValue;
-                else if (op == "*") computedValue = firstValue * secondValue; 
+                else if (op == "*") computedValue = firstValue * secondValue;
 #if MOREOPERATORS
                 else if (op == "-") computedValue = firstValue - secondValue;
                 else if (op == "/") computedValue = firstValue / secondValue;
@@ -213,7 +223,7 @@ namespace KweeLib
 #endif
                         case "+":
                             {
-                                while (opStack.Count > 0 && opStack.Peek() != "(" && doesTargetHaveHigherPrecedence(opStack.Peek(), token)){
+                                while (opStack.Count > 0 && opStack.Peek() != "(" && doesTargetHaveHigherOrEqualPrecedence(opStack.Peek(), token)){
                                         string? opMsg = binaryCalcAndPush(opStack, valStack);
                                         if(opMsg != null){
                                             errorMessage = opMsg;

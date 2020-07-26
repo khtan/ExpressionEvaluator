@@ -1,7 +1,8 @@
 #nullable enable
 // Remove comment to add '/' and '-' operators
-// #define MOREOPERATORS
+#define MOREOPERATORS
 
+using System;
 using Xunit;
 using Xunit.Abstractions;
 using FunctionalCalcLib;
@@ -40,6 +41,13 @@ namespace FunctionalSuite1
         [InlineData("37-17-7-3", 10, null)]
         [InlineData("(((37))-((17))-((7))-((3)))", 10, null)]
         [InlineData("(7*4) -6 -(2 + 11)", 9, null)]
+        [InlineData("0 * (3-7)", -0, null)]
+        [InlineData("0 * (3-7)", 0, null)]
+        [InlineData("0 * (7-3)", 0, null)]
+        [InlineData("(((6 - 12) * (19 * 18) * 4) * ((5 * 16) * (4 * 18) * 19) * (((1 - 13) - 18 + 3) * ((7 + 6) - (8 - 5) + 6) * (8 + 14 + 5) * (12 * 19)) - (18 - 12) + (13 * (7 + (8 + 11) + (17 * 18)) * (10 + 12) * (16 - 10)))", 2388888007389546, null)]
+        [InlineData("(((6 - 12) * (19 * 18) * 4) * ((5 * 16) * (4 * 18) * 19) * (((1 - 13) - 18 + 3) * ((7 + 6) - (8 - 5) + 6) * (8 + 14 + 5) * (12 * 19)) - (18 - 12) + (13 * (7 + (8 + 11) + (17 * 18)) * (10 + 12) * (16 - 10)))", (Double)2.388888007389546E+15, null)]
+        // Below: rounding from ..46E+15 to ..5E15 results in difference of 4, so test comparison fails
+        // [InlineData("(((6 - 12) * (19 * 18) * 4) * ((5 * 16) * (4 * 18) * 19) * (((1 - 13) - 18 + 3) * ((7 + 6) - (8 - 5) + 6) * (8 + 14 + 5) * (12 * 19)) - (18 - 12) + (13 * (7 + (8 + 11) + (17 * 18)) * (10 + 12) * (16 - 10)))", (Double)2.38888800738955E+15, null)]
         public void s0099_subtract(string expr, dynamic expectedResult, string? errorMsg){
             TestAnExpression(expr, expectedResult, errorMsg);
         }
