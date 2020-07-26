@@ -4,6 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 using Xunit.Abstractions;
 using FluentAssertions;
 using Xunit.Sdk;
+using Xunit;
 
 namespace FunctionalSuite1
 {
@@ -41,8 +42,11 @@ namespace FunctionalSuite1
                     if(  (!Double.IsPositiveInfinity((Double)d) && !Double.IsPositiveInfinity((Double)expected))
                        && ( !Double.IsNegativeInfinity((Double)d) && !Double.IsNegativeInfinity((Double)expected) )
                         ) {
+                        Double expectedPrecision = Math.Abs(expected) / 1000000000000000; // 15 significant digits
                         // ?Bug in FluentAssertions BeApproximately should also compare infinities as equal
-                        NumericAssertionsExtensions.BeApproximately(d.Should(), expected, 0.00000001);
+                        // NumericAssertionsExtensions.BeApproximately(d.Should(), expected, 0.00000001);
+                        // NumericAssertionsExtensions.BeApproximately(d.Should(), expected, 3000);
+                        NumericAssertionsExtensions.BeApproximately(d.Should(), expected, expectedPrecision);
                     }
                 }
                 if (errorMessage != null)
