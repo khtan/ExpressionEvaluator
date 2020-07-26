@@ -53,6 +53,7 @@ namespace KweeLib
                     {
                         if (isParenBalanced(userInput))
                         {
+                            // Cannot just check begin and end of string for ( and ), eg (1+2)*(3+5)
                             rationalExpression = "( " + ensureSingleSpace(userInput) + " )";
                         }
                         else
