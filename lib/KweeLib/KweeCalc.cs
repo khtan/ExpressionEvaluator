@@ -77,28 +77,6 @@ namespace KweeLib
             }
             return Tuple.Create(rationalExpression, errorMessage);
         }
-        private bool doesTargetHaveHigherPrecedence(string targetOp, string currentOp)
-        {
-            bool returnVal = false;
-            if (currentOp == "+" || currentOp == "-")
-            {
-                if(targetOp == "*" || targetOp == "/")
-                {
-                    returnVal = true;
-                }
-            }
-            return returnVal;
-        }
-        private bool doesTargetHaveHigherOrEqualPrecedence(string targetOp, string currentOp)
-        {
-            bool returnVal = false;
-            if (currentOp == "+" || currentOp == "-")
-            {
-                if(targetOp == "*" || targetOp == "/") { returnVal = true; }
-                if(targetOp == "+" || targetOp == "-"){ returnVal = true; }
-            }
-            return returnVal;
-        }
         private bool HasMalformedConstructs(string input){
             bool returnVal = false;
             // empty braces
