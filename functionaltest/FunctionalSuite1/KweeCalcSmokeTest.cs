@@ -54,6 +54,8 @@ namespace FunctionalSuite1
         // [InlineData("(((6 - 12) * (19 * 18) * 4) * ((5 * 16) * (4 * 18) * 19) * (((1 - 13) - 18 + 3) * ((7 + 6) - (8 - 5) + 6) * (8 + 14 + 5) * (12 * 19)) - (18 - 12) + (13 * (7 + (8 + 11) + (17 * 18)) * (10 + 12) * (16 - 10)))", (Double)2.38888800738955E+15, null)]
         [InlineData("(13 * 15 * 19) * (15 * (15 - 7 * (18 + 0)) - (16 * 2) * (3 + 7)) * ((5 - 1) - (2 - 0) * (3 * 18)) * ((12 * 18 - 7) * 16 * ((2 + 6) * (18 * 13) - (16 * 15)) * ((18 - 12) * (3 + 13) * (18 - 2))) + (3 + 6 - 3)", 6.411500811819418E+18, null)]
         [InlineData("(13 * 15 * 19) * (15 * (15 - 7 * (18 + 0)) - (16 * 2) * (3 + 7)) * ((5 - 1) - (2 - 0) * (3 * 18)) * ((12 * 18 - 7) * 16 * ((2 + 6) * (18 * 13) - (16 * 15)) * ((18 - 12) * (3 + 13) * (18 - 2))) + (3 + 6 - 3)", 6.41150081181942E+18, null)]
+        [InlineData("(1-8209) * 109440 * ((1-2659393) - (18 - 12) + (13 * (7 + (8 + 11) + (17 * 18)) * (10 + 12) * (16 - 10) )", null, "There are unbalanced parenthesis in the expression")]
+        [InlineData("(1-8208) * 109440 * ))1-2659393( - (18 - 12) + (13 * (7 + (8 + 11) + (17 * 18)) * (10 + 12) * (16 - 10) )", null, "There are unbalanced parenthesis in the expression")]
         public void s0098_largeValuesWithSubtraction(string expr, dynamic expectedResult, string? errorMsg){
             TestAnExpression(expr, expectedResult, errorMsg);
         }

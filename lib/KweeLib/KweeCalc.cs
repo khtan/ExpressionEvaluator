@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
+using System.Xml;
 
 namespace KweeLib
 {
@@ -101,13 +102,14 @@ namespace KweeLib
         private bool isParenBalanced(string input)
         {
             var numBalance = 0;
-            var isBalanced = true;
+            var isBalanced = false;
             foreach (char c in input)
             {
                 if (c == '(') numBalance++;
-                if (c == ')') numBalance--;
-                if (numBalance < 0) { isBalanced = false; break; }
+                else if (c == ')') numBalance--;
+                if (numBalance < 0) break; 
             }
+            if (numBalance == 0) { isBalanced = true; }
             return isBalanced;
         }
         /// <summary>
@@ -146,7 +148,7 @@ namespace KweeLib
             Replace("/", " / ");
 #endif
             input = input.Trim(); // clean the beginning and end
-            input = Regex.Replace(input, @"\s+", " "); // collapse extraneous spaces
+            input = Regex.Replace(input, @"\s+", " "); // collapse extraneous whitespaces
             return input;
         }
         private int getPrecedence(string op){
