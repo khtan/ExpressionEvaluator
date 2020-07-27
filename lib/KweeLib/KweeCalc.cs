@@ -171,6 +171,20 @@ namespace KweeLib
             input = Regex.Replace(input, @"\s+", " "); // collapse extraneous spaces
             return input;
         }
+        private int getPrecedence(string op){
+            int returnVal = -1;
+            switch(op){
+                case "-" : returnVal = 0;
+                    break;
+                case "+" : returnVal = 0;
+                    break;
+                case "*" : returnVal = 1;
+                    break;
+                case "/" : returnVal = 1;
+                    break;
+            }
+            return returnVal;
+        }
         public string? binaryCalcAndPush(Stack<string> opStack, Stack<Double> valStack){
             string? retString = null;
             try{
@@ -224,7 +238,8 @@ namespace KweeLib
 #endif
                         case "+":
                             {
-                                while (opStack.Count > 0 && opStack.Peek() != "(" && doesTargetHaveHigherOrEqualPrecedence(opStack.Peek(), token)){
+                                // while (opStack.Count > 0 && opStack.Peek() != "(" && doesTargetHaveHigherOrEqualPrecedence(opStack.Peek(), token)){
+                                while (opStack.Count > 0 && opStack.Peek() != "(" && (getPrecedence(opStack.Peek()) >= getPrecedence(token) )){
                                         string? opMsg = binaryCalcAndPush(opStack, valStack);
                                         if(opMsg != null){
                                             errorMessage = opMsg;
