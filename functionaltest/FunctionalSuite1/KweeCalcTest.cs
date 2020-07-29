@@ -1,5 +1,5 @@
 #nullable enable
-
+using System.Threading;
 using Xunit;
 using Xunit.Abstractions;
 using FunctionalCalcLib;
@@ -84,6 +84,12 @@ namespace FunctionalSuite1
         public void f0013_longchain(string expr, dynamic expectedResult, string? errorMsg){
             t0000_general(expr, expectedResult, errorMsg);
         }
-    #endregion forwarded tests
+        [Fact]
+        public void Sleep1()
+        {
+            Thread.Sleep(3000);
+        }
+
+        #endregion forwarded tests
     }
 }

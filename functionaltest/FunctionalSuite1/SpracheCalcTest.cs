@@ -3,13 +3,14 @@ using System;
 using Xunit;
 using Xunit.Abstractions;
 using FunctionalCalcLib;
+using System.Threading;
 
 namespace FunctionalSuite1
 {
     public class SpracheCalcTest : CommonCalcTest
     {
     #region class internals
-        public SpracheCalcTest(ITestOutputHelper output) { 
+        public SpracheCalcTest(ITestOutputHelper output) {
             this.Output = output;
             this.CalcFn = Calc.CalcImplSprache;
         }
@@ -82,6 +83,11 @@ namespace FunctionalSuite1
         [InlineData("3 * 3 * 3 + 2 * 2", 31, null)]
         public void f0013_longchain(string expr, dynamic expectedResult, string? errorMsg){
             t0000_general(expr, expectedResult, errorMsg);
+        }
+        [Fact]
+        public void Sleep1()
+        {
+            Thread.Sleep(3000);
         }
     #endregion forwarded tests
     }

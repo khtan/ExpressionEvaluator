@@ -2,7 +2,7 @@
 // Remove comment to add '/' and '-' operators
 #define MOREOPERATORS
 
-using System;
+using System.Threading;
 using Xunit;
 using Xunit.Abstractions;
 using FunctionalCalcLib;
@@ -41,8 +41,9 @@ namespace FunctionalSuite1
         [InlineData("37-17-7-3", 10, null)]
         [InlineData("(((37))-((17))-((7))-((3)))", 10, null)]
         [InlineData("(7*4) -6 -(2 + 11)", 9, null)]
-        [InlineData("0 * (3-7)", -0, null)]
-        [InlineData("0 * (3-7)", 0, null)]
+        [InlineData("0 * (3-11)", -0, null)] // compare against -0
+        [InlineData("0 * (5-11)", 0, null)] // compare against 0
+        [InlineData("0 * (7-11)", +0, null)] // compare against +0
         [InlineData("0 * (7-3)", 0, null)]
         public void s0099_subtract(string expr, dynamic expectedResult, string? errorMsg){
             TestAnExpression(expr, expectedResult, errorMsg);
@@ -60,6 +61,12 @@ namespace FunctionalSuite1
             TestAnExpression(expr, expectedResult, errorMsg);
         }
 #endif
-    #endregion special tests
+        [Fact]
+        public void Sleep1()
+        {
+            Thread.Sleep(3000);
+        }
+
+        #endregion special tests
     }
 }
