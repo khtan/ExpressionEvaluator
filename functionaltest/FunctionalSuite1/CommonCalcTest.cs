@@ -12,8 +12,8 @@ namespace FunctionalSuite1
     {
            // [MaybeNull] attribute not disabling CS8618 warning
            // Warning CS8618  Non-nullable field 'CalcFn' is uninitialized.Consider declaring the field as nullable.FunctionalSuite1 C:\cprojects\github\circleci\ExpressionEvaluator\functionaltest\FunctionalSuite1\CommonCalcTest.cs	12	Active
-        [MaybeNull] public ITestOutputHelper Output;
-        [MaybeNull] public Func<string, Tuple<dynamic?, string?>> CalcFn;
+        [MaybeNull] public ITestOutputHelper? Output;
+        [MaybeNull] public Func<string, Tuple<dynamic?, string?>>? CalcFn;
     #region testhelpers
         protected void TestAnExpression(string expr, dynamic? expected, string? errorMessage = null)
         {

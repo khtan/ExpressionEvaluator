@@ -61,12 +61,6 @@ namespace FunctionalSuite1
             TestAnExpression(expr, expectedResult, errorMsg);
         }
 #endif
-        [Fact]
-        public void Sleep1()
-        {
-            Thread.Sleep(3000);
-        }
-
         #endregion special tests
     }
 }

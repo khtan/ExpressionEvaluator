@@ -84,12 +84,6 @@ namespace FunctionalSuite1
         public void f0013_longchain(string expr, dynamic expectedResult, string? errorMsg){
             t0000_general(expr, expectedResult, errorMsg);
         }
-        [Fact]
-        public void Sleep1()
-        {
-            Thread.Sleep(3000);
-        }
-
         #endregion forwarded tests
     }
 }
