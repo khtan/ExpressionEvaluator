@@ -24,7 +24,7 @@ namespace FunctionalCalcLib.test
         [Fact]
         public void t0002_CalcImplKwee()
         {
-            var tuple = Calc.CalcImplKwee("11 * 13");
+            var tuple = Calc.CalcImplRobustKwee("11 * 13");
             ((Double)tuple.Item1).Should().Be(143);
             tuple.Item2.Should().BeNull();
         }
@@ -32,7 +32,7 @@ namespace FunctionalCalcLib.test
         public void t0003_TestAgainstBothImpl()
         {
             var expr = "17 * 19";
-            var tupleKwee = Calc.CalcImplKwee(expr);
+            var tupleKwee = Calc.CalcImplRobustKwee(expr);
             var tupleSprache = Calc.CalcImplSprache(expr);
             tupleKwee.Should().Be(tupleSprache);
         }

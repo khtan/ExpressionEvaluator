@@ -2,6 +2,7 @@
 // Remove comment to add '/' and '-' operators
 #define MOREOPERATORS
 using System;
+using System.Text;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
@@ -54,8 +55,7 @@ namespace KweeLib
                     {
                         if (isParenBalanced(userInput))
                         {
-                            // Cannot just check begin and end of string for ( and ), eg (1+2)*(3+5)
-                            rationalExpression = "( " + ensureSingleSpace(userInput) + " )";
+                            rationalExpression = userInput;
                         }
                         else
                         {
@@ -137,7 +137,23 @@ namespace KweeLib
             }
             return hasValid;
         }
-        private string ensureSingleSpace(string input)
+        public string ensureSingleSpaceUsingStringBuilder(string input)
+        {
+            StringBuilder tmp = new StringBuilder(input);
+            tmp = tmp.Replace("+", " + ") // operators
+                .Replace("*", " * ")
+                .Replace("(", " ( ")
+                .Replace(")", " ) "); // expand the key characters
+#if MOREOPERATORS
+            tmp = tmp.Replace("-", " - ").
+            Replace("/", " / ");
+#endif
+            string stmp = tmp.ToString();
+            stmp = stmp.Trim(); // clean the beginning and end
+            stmp = Regex.Replace(stmp, @"\s+", " "); // collapse extraneous whitespaces
+            return stmp;
+        }
+        public string ensureSingleSpace(string input)
         {
             input = input.Replace("+", " + ") // operators
                 .Replace("*", " * ")
@@ -187,6 +203,19 @@ namespace KweeLib
     #endregion helpers
     #region Evaluate
         /// <summary>
+        /// EvaluateWithChecks checks the inputs before calling Evaluate
+        /// This results in better reliability at the expense of the checks
+        /// </summary>
+        public Tuple<dynamic?, string?> EvaluateWithChecks(string userInput){
+            double? returnValue = null;
+            string? errorMessage = null;
+            var exprTuple = rationalizeExpression(userInput);
+            if(exprTuple.Item1 != null){
+                return Evaluate(exprTuple.Item1);
+            } else { errorMessage = exprTuple.Item2; }
+            return new Tuple<dynamic?, string?>(returnValue, errorMessage);
+        }
+        /// <summary>
         /// The Evaluate function conforms to the functional interface, Func<string, Tuple<dynamic?, string?>>, ie
         ///    the input is an expression ( string )
         ///    and the output is a Tuple. 
@@ -194,13 +223,17 @@ namespace KweeLib
         /// The null represents a bad evaluation.
         /// The second value of the Tuple is a nullable string, representing the error message if any.
         /// The null represents no errors.
+        /// Evaluate does minimal checking on the inputs. It assumes the expressions are well-formed, just like inputs
+        /// in competitive programming. This function is much faster and useful for performance evaluations.
         /// </summary>
         public Tuple<dynamic?,string?> Evaluate(string userInput)
         {
             double? returnValue = null;
             string? errorMessage = null;
 
-            var exprTuple = rationalizeExpression(userInput);
+            // Cannot just check begin and end of string for ( and ), eg (1+2)*(3+5)
+            StringBuilder tmp = new StringBuilder("( " + ensureSingleSpace(userInput) + " )");
+            var exprTuple = new Tuple<string?, string?>(tmp.ToString(), "");
             if(exprTuple.Item1 != null)
             {
                 var opStack = new Stack<String>(); // This holds current innermost paren grouping of operators, including outer "(" s

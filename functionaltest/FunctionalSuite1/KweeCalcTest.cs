@@ -11,7 +11,7 @@ namespace FunctionalSuite1
     #region class internals
         public KweeCalcTest(ITestOutputHelper output) {
             this.Output = output;
-            this.CalcFn = Calc.CalcImplKwee;
+            this.CalcFn = Calc.CalcImplRobustKwee;
         }
     #endregion class internals
     #region special tests

@@ -14,7 +14,7 @@ namespace FunctionalSuite1
     #region class internals
         public KweeCalcSmokeTest(ITestOutputHelper output) {
             this.Output = output;
-            this.CalcFn = Calc.CalcImplKwee;
+            this.CalcFn = Calc.CalcImplRobustKwee;
         }
     #endregion class internals
     #region smoke tests

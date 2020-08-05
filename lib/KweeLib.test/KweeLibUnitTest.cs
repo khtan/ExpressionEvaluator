@@ -17,16 +17,15 @@ namespace KweeLib.test
         [Fact]
         public void t0000_noSpaceBetweenParens()
         {
-            var tuple = Calc.rationalizeExpression("(((3)))");
-            tuple.Item1.Should().Be("( ( ( ( 3 ) ) ) )"); // quirk : Should().Equal() is not what is seems
-            tuple.Item2.Should().BeNull();
+            var s = Calc.ensureSingleSpace("(((3)))");
+            s.Should().Be("( ( ( 3 ) ) )"); // quirk : Should().Equal() is not what is seems
         }
         [Fact]
         public void t0001_squishedExpression()
         {
-            var tuple = Calc.rationalizeExpression("2.5*7.88");
-            tuple.Item1.Should().Be("( 2.5 * 7.88 )");
-            tuple.Item2.Should().BeNull();
+            var s = Calc.ensureSingleSpace("2.5*7.88");
+            s.Should().Be("2.5 * 7.88");
+
         }
         [Fact]
         public void t0002_unbalancedParens()

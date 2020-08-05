@@ -39,10 +39,21 @@ namespace FunctionalCalcLib
             // Error is connot implicitly converty type Tuple<double,string> to Tuple(object,string)
             // return Tuple.Create(value, errorMessage);
         }
-
-        public static Tuple<dynamic?, string?> CalcImplKwee(string expr)
+        /// <summary>
+        /// Use this version of Calc for performance and competitive programs, where inputs are already well formed
+        /// It is faster at the expense of no checking
+        /// </summary>
+        public static Tuple<dynamic?, string?> CalcImplFastKwee(string expr)
         {
             return Kwee.Evaluate(expr);
+        }
+        /// <summary>
+        /// Use this version of Calc for robust, industrial usage where users can throw bad data.
+        /// It is much slower due to the extra checks
+        /// </summary>
+        public static Tuple<dynamic?, string?> CalcImplRobustKwee(string expr)
+        {
+            return Kwee.EvaluateWithChecks(expr);
         }
     }
 }
