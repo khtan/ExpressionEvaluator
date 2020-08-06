@@ -22,6 +22,10 @@ Mode selection:
    robust ( default ) : full checking of input, only allows well-formed expressions to be evaluated
    fast : competitive programming where inputs are strictly well-formed
 Examples:
+   Current directory:
+   > pwd
+   > ExpressionEvaluator/console/KweeConsole/bin/Debug/netcoreapp3.1
+
    Interactive run
       > KweeConsole.exe
       > 1 + 2
@@ -31,7 +35,7 @@ Examples:
       >   C-c C-c^C
 
    Regression run
-      > KweeConsole.exe -i test1.input -r test1.ref
+      > KweeConsole.exe -i ..\..\..\..\data\test1.input -r ..\..\..\..\data\test1.ref
       > 19
       > 40
       > error3: 40 != 41
@@ -40,9 +44,9 @@ Examples:
       > Runtime: 00:00:00.08
 
    Performance runs
-      > KweeConsole.exe -s -i explist.dat -m robust
+      > KweeConsole.exe -s -i ..\..\..\..\data\stress.input -m robust
       Runtime: 00:00:07.86
-      > KweeConsole.exe -s -i explist.dat -m fast
+      > KweeConsole.exe -s -i ..\..\..\..\data\stress.input -m fast
       Runtime: 00:00:01.37"
     )] // appears at the end of help message
     class Program
