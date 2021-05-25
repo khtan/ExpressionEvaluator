@@ -275,7 +275,7 @@ There is a simple naming convention for the tests : {prefix-char}{4 digit number
 
    In the above examples, KweeCalcTest/f0004_precedence and SpracheCalcTest/f0004_precedence both call the same test in CommonCalcTest/t0004_precedence.
    The test KweeCalcTest/s0010_malformedPass indicates that KweeCalc handles this set of conditions while SpracheCalcTest/s0010_malformedFail does not.
-   The failure is checked against the error message, and is condiered a "pass" in the testing framework.
+   The failure is checked against the error message, and is considered a "pass" in the testing framework.
    
    
    The 4 digit number is used to provide an ordering, to show either how the functions got developed or the recommended sequence
